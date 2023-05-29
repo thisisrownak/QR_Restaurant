@@ -1,0 +1,119 @@
+﻿@model ProductFeatureViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/lib/DataTables/datatables.min.css" rel="stylesheet" />
+}
+
+    @section Scripts {
+    <script src="~/lib/DataTables/datatables.min.js"></script>
+    <script src="~/js/menuFeaturesController.js"></script>
+}
+
+    <div class="row">
+        @await Component.InvokeAsync("RestaurantManagerMenu")
+
+        <div class="col-md-9">
+            <div class="ibox float-e-margins" id="fboxSf">
+                <div class="ibox-title text-center">
+                    <h3 class="col-md-12">@SharedLocalizer.GetLocalizedValue("MenuOptions")</h3>
+                    <a href="/MenuProductFeature/AddOrUpdate"><i class="fa fa-plus"></i>@SharedLocalizer.GetLocalizedValue("Add") </a>
+                </div>
+                <div class="ibox-content">
+                    <br />
+                    <div class="table-responsive textingad">
+                        <table class="table table-hover dataTables-list">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @SharedLocalizer.GetLocalizedValue("Name")
+                                    </th>
+                                    <th>
+                                        @SharedLocalizer.GetLocalizedValue("Menu")
+                                    </th>
+                                    <th>
+                                        @SharedLocalizer.GetLocalizedValue("IsMultiple")
+                                    </th>
+                                    <th>
+                                        @SharedLocalizer.GetLocalizedValue("Items")
+                                    </th>
+                                    <th>
+                                        @SharedLocalizer.GetLocalizedValue("Active")
+                                    </th>
+                                    <th>@SharedLocalizer.GetLocalizedValue("Edit")</th>
+                                    <th>@SharedLocalizer.GetLocalizedValue("Action")</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var feature in Model.ProductFeatures)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => feature.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => feature.MenuProduct.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => feature.IsMultiSelect)
+                                    </td>
+                                    <td>
+                                        @for (int i = 0; i < feature.ProductFeatureItems.Count; i++)
+                                        {
+                                            <span>@(i == 0 ? "" : ",") @feature.ProductFeatureItems[i].Name </span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => feature.IsActive)
+                                    </td>
+                                    <td>
+                                        <a href="/MenuProductFeature/addorupdate/@feature.Id">@SharedLocalizer.GetLocalizedValue("Edit")</a>
+                                    </td>
+                                    <td>
+                                        @if (feature.IsActive)
+                                        {
+                                            <a href="#" onclick="openDeleteModal('@feature.Id');">@SharedLocalizer.GetLocalizedValue("Block")</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="/MenuProductFeature/activated/@feature.Id">@SharedLocalizer.GetLocalizedValue("Unblock")</a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="delete-modal" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated fadeIn">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <p class="p-y m-t text-center">
+                        <i class="fa fa-remove text-warning fa-5x"></i>
+                        <button type="button" class="close mr-3" data-dismiss="modal">
+                            <span aria-hidden="true">&#xD7;</span><span class="sr-only">@SharedLocalizer.GetLocalizedValue("Close")</span>
+                        </button>
+                    </p>
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center">@SharedLocalizer.GetLocalizedValue("DeleteQuestion")</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary text-white" data-dismiss="modal" style="color:#910400;">@SharedLocalizer.GetLocalizedValue("No")</button> <a onclick="deleteProduct()" class="btn btn-primary text-white">@SharedLocalizer.GetLocalizedValue("Yes")</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,144 @@
+﻿@model MenuCategoryViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/lib/DataTables/datatables.min.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/lib/DataTables/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnCategory').toggleClass('btn-outline');           
+            $('.dataTables-list').DataTable({
+                pageLength: 10,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy' },
+                    { extend: 'csv' },
+                    { extend: 'excel', title: 'Excel List' },
+                    { extend: 'pdf', title: 'Pdf' },
+
+                    {
+                        extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ]
+
+            });
+        });
+
+        let selectedId = 0;
+
+        openDeleteModal = (id) => {
+            selectedId = id;
+            $('#delete-modal').modal();
+        }
+
+        deleteCategory = () => {
+            location.href = "/menuCategory/Passive/" + selectedId;
+        };
+
+    </script>
+}
+
+<div class="row">
+    @await Component.InvokeAsync("RestaurantManagerMenu")
+
+    <div class="col-md-9">
+        <div class="ibox float-e-margins" id="fboxSf">
+            <div class="ibox-title text-center">
+                <h3 class="col-md-12">@SharedLocalizer.GetLocalizedValue("MenuCategories")</h3>
+                <a href="/menuCategory/AddOrUpdate"><i class="fa fa-plus"></i>@SharedLocalizer.GetLocalizedValue("Add") </a>
+            </div>
+            <div class="ibox-content">
+                <br />
+                <div class="table-responsive textingad">
+                    <table class="table table-hover dataTables-list">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @SharedLocalizer.GetLocalizedValue("RowNumber")
+                                </th>
+                                <th>
+                                    @SharedLocalizer.GetLocalizedValue("CategoryName")
+                                </th>
+                                <th>
+                                    @SharedLocalizer.GetLocalizedValue("Active")
+                                </th>
+                                <th>@SharedLocalizer.GetLocalizedValue("Edit")</th>
+                                <th>@SharedLocalizer.GetLocalizedValue("Action")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.MenuCategories)
+                            {
+                            <tr>
+                                <td style="width:15%">
+                                    @item.RowNumber
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td style="width:15%">
+                                    @Html.DisplayFor(modelItem => item.IsActive)
+                                </td>
+                                <td style="width:15%">
+                                    <a href="/menucategory/addorupdate/@item.Id">@SharedLocalizer.GetLocalizedValue("Edit")</a>
+                                </td>
+                                <td style="width:15%">
+                                    @if (item.IsActive)
+                                    {
+                                        <a href="#" onclick="openDeleteModal('@item.Id');">@SharedLocalizer.GetLocalizedValue("Block")</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="/menucategory/activated/@item.Id">@SharedLocalizer.GetLocalizedValue("Unblock")</a>
+                                    }
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="delete-modal" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated fadeIn">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <p class="p-y m-t text-center">
+                        <i class="fa fa-remove text-warning fa-5x"></i>
+                        <button type="button" class="close mr-3" data-dismiss="modal">
+                            <span aria-hidden="true">&#xD7;</span><span class="sr-only">@SharedLocalizer.GetLocalizedValue("Close")</span>
+                        </button>
+                    </p>
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center">@SharedLocalizer.GetLocalizedValue("DeleteQuestion")</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary text-white" data-dismiss="modal" style="color:#910400;">@SharedLocalizer.GetLocalizedValue("No")</button> <a onclick="deleteCategory()" class="btn btn-primary text-white">@SharedLocalizer.GetLocalizedValue("Yes")</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

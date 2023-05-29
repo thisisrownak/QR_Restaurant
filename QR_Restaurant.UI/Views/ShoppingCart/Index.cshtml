@@ -1,0 +1,59 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@section Styles{
+    <style>
+        td {
+            vertical-align: middle !important;
+        }
+
+        .spacer {
+            height: 70px;
+        }
+    </style>
+}
+
+
+@section Scripts{
+    <script src="/js//shoppingCartController.js"></script>
+}
+
+<div class="row">   
+    <div class="col-md-12">
+        <div class="ibox float-e-margins" id="fboxSf">
+            <div class="ibox-title">
+                <h3 class="col-md-12"> @SharedLocalizer.GetLocalizedValue("Cart") <i class="fa fa-cart-arrow-down float-right"></i></h3>
+                    <input hidden value="@(String.IsNullOrEmpty(Model) ? SharedLocalizer.GetLocalizedValue("Currency") : Model)" id="txtCurrency" />
+                <input hidden value="@SharedLocalizer.GetLocalizedValue("Total")" id="txtTotal" />
+                <input hidden value="@SharedLocalizer.GetLocalizedValue("EmptyCartMessage")" id="txtEmptyCart" />
+            </div>
+            <div class="ibox-content ibox-br">
+                <div class="sk-spinner sk-spinner-wave">
+                    <div class="sk-rect1"></div>
+                    <div class="sk-rect2"></div>
+                    <div class="sk-rect3"></div>
+                    <div class="sk-rect4"></div>
+                    <div class="sk-rect5"></div>
+                </div>
+                <form asp-action="AddOrder" asp-controller="Order" method="post">
+                    <input name="RestaurantId" id="txtRestaurantId" hidden />
+                    <input name="UserId" id="txtUserId" hidden />
+                    <input name="TableId" id="txtTableId" hidden />
+                    <table class="table table-borderless">
+                        <tbody id="cartContentsHtml">
+                        </tbody>
+                    </table>
+                    <hr>
+                    <div class="form-group" id="txtOrderIsReady">
+                        <textarea class="form-control" name="OrderNote" maxlength="70" rows="2" placeholder="@SharedLocalizer.GetLocalizedValue("NotePlaceholder")"></textarea>
+                    </div>
+                    <button type="submit" onclick="startOrder()" id="placeOrder" class="btn btn-primary btn-outline btn-block mt-4 btn-sm">@SharedLocalizer.GetLocalizedValue("OrderButton")</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

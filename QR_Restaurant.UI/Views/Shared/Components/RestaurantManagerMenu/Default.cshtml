@@ -1,0 +1,71 @@
+﻿@model RestaurantSettingsViewModel
+<div class="col-lg-3">
+    <div class="contact-box center-version">
+        <a style="text-decoration:none; color:black;">
+            <img alt="image" class="img-lg" src="~/images/logos/@Model.LogoUrl">
+            <h3 class="m-b-xs"><strong>@Model.Name</strong></h3>
+            <address class="m-t-md">
+                @Model.Address<br>
+                <abbr title="Phone"><i class="fa fa-phone"></i></abbr><p> @Model.Phone</p>
+            </address>
+            <strong>@SharedLocalizer.GetLocalizedValue("Description")</strong>
+            <p>@Model.Description</p>
+        </a>
+
+        <div class="contact-box-footer">
+            <button id="btnOrder" onclick="getLink('order')" class="btn btn-outline btn-primary btn-block"><i class="fa fa-th float-left mt-1"></i>@SharedLocalizer.GetLocalizedValue("Orders")</button>
+            <button id="btnOrderAlternative" onclick="getLink('orderAlternative')" class="btn btn-outline btn-primary btn-block"><i class="fa fa-list-ol float-left mt-1"></i>@SharedLocalizer.GetLocalizedValue("OrderList")</button>
+            <button id="btnOrderBoard" onclick="getLink('orderBoard')" class="btn btn-outline btn-primary btn-block"><i class="fa fa-columns fa-square-kanban float-left mt-1"></i>@SharedLocalizer.GetLocalizedValue("OrderBoard")</button>
+            @if (User.IsInRole("RestaurantAdmin"))
+            {
+                <button id="btnQrTables" onclick="getLink('qr')" class="btn btn-outline btn-primary btn-block"><i class="fa fa-qrcode float-left mt-1"></i>@SharedLocalizer.GetLocalizedValue("QrCodeTables")</button>
+                <button id="btnCategory" onclick="getLink('category')" class="btn btn-outline btn-primary btn-block"><i class="fa fa-map-signs float-left mt-1"></i>@SharedLocalizer.GetLocalizedValue("CreateMenuCategory") </button>
+                <button id="btnMenu" onclick="getLink('menu')" class="btn btn-outline btn-primary btn-block"><i class="fa fa-cogs float-left mt-1"></i>@SharedLocalizer.GetLocalizedValue("CreateMenu") </button>
+                <button id="btnMenuFeatures" onclick="getLink('menuFeatures')" class="btn btn-outline btn-primary btn-block"><i class="fa fa-cogs float-left mt-1"></i> @SharedLocalizer.GetLocalizedValue("MenuOptions") </button>
+                <button id="btnSettings" onclick="getLink('settings')" class="btn btn-outline btn-primary btn-block"><i class="fa fa-cog float-left mt-1"></i>@SharedLocalizer.GetLocalizedValue("RestaurantSettings") </button>
+                <button id="btnStaff" onclick="getLink('staff')" class="btn btn-outline btn-primary btn-block"><i class="fa fa-user-plus float-left mt-1"></i>@SharedLocalizer.GetLocalizedValue("StaffManagement") </button>
+                <button id="btnReports" onclick="getLink('reports')" class="btn btn-outline btn-primary btn-block"><i class="fa fa-file-o float-left mt-1"></i>@SharedLocalizer.GetLocalizedValue("Reports") </button>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    const getLink = (param) => {
+        switch (param) {
+            case 'order':
+                window.location.href = '/restaurant/RestaurantManager';
+                return;
+            case 'orderAlternative':
+                window.location.href = '/restaurant/orders';
+                return;
+            case 'orderBoard':
+                window.location.href = '/restaurant/orderBoard';
+                return;
+            case 'qr':
+                window.location.href = '/qrcode';
+                return;
+            case 'menu':
+                window.location.href = '/menuproduct';
+                return;
+            case 'menuFeatures':
+                window.location.href = '/menuproductfeature';
+                return;
+            case 'category':
+                window.location.href = '/menuCategory';
+                return;
+            case 'settings':
+                window.location.href = '/Restaurant/settings';
+                return;
+            case 'staff':
+                window.location.href = '/staff';
+                return;
+            case 'reports':
+                window.location.href = '/report';
+                return;
+            default:
+                return;
+        }
+    }
+</script>
+

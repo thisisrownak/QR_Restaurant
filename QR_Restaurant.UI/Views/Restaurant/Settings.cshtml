@@ -1,0 +1,174 @@
+﻿@model RestaurantSettingsViewModel
+@{
+    ViewData["Title"] = "Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/lib/icheck/flat/green.css" rel="stylesheet" />
+}
+    @section Scripts{
+    <script src="/lib/jasny/jasny-bootstrap.min.js"></script>
+    <script src="~/lib/icheck/icheck.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnSettings').toggleClass('btn-outline');
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                increaseArea: '20%' /* optional */
+            });
+        });
+
+        const createLoad = () => {
+            $('#qrTableForm').children('.ibox-content').toggleClass('sk-loading');
+        }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                document.getElementById('currentPhoto').style.display = 'none';
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.image-upload-wrap').show();
+                    $('.image-title').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                $('.image-upload-wrap').hide();
+            }
+        }
+
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.image-upload-wrap').hide();
+            document.getElementById('fileAvatar').value = null;
+            document.getElementById('currentPhoto').style.display = 'block';
+        };
+    </script>
+}
+
+
+    <div class="row">
+        @await Component.InvokeAsync("RestaurantManagerMenu")
+
+        <div class="col-md-9">
+            <div id="formAdd" class="row animated">
+                <div class="col-md-12">
+                    <div class="ibox float-e-margins" id="qrTableForm">
+                        <div class="ibox-content">
+                            <div class="sk-spinner sk-spinner-wave">
+                                <div class="sk-rect1"></div>
+                                <div class="sk-rect2"></div>
+                                <div class="sk-rect3"></div>
+                                <div class="sk-rect4"></div>
+                                <div class="sk-rect5"></div>
+                            </div>
+
+                            <form asp-action="settings" asp-controller="restaurant" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-lg-12 control">
+                                        <label class="form-col-form-label" for="">@SharedLocalizer.GetLocalizedValue("RestaurantSettings")</label>
+                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:80%"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <input hidden asp-for="RestaurantId" />
+                                <input hidden asp-for="LogoUrl" />
+                                <div class="row">
+                                    <div class="form-group form-material col-xl-6">
+                                        <label class="form-col-form-label">
+                                            @SharedLocalizer.GetLocalizedValue("Name")* <span asp-validation-for="Name" class="text-danger"></span>
+                                        </label>
+                                        <input asp-for="Name" type="text" placeholder=" @SharedLocalizer.GetLocalizedValue("Name")" class="form-control">
+                                    </div>
+                                    <div class="form-group form-material col-xl-6">
+                                        <label class="form-col-form-label">
+                                            @SharedLocalizer.GetLocalizedValue("Phone")* <span asp-validation-for="Phone" class="text-danger"></span>
+                                        </label>
+                                        <input asp-for="Phone" data-mask="(999) 999-9999" id="txtManagerPhone" type="text" class="form-control" placeholder="3453..">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="float-left">@SharedLocalizer.GetLocalizedValue("Image") : </label>
+                                        <span asp-validation-for="Logo" class="text-danger"></span>
+                                        <br />
+                                        <br />
+                                        <a class="btn btn-default float-left" style="cursor:pointer;" onclick="$('.file-upload-input').trigger( 'click' )">@SharedLocalizer.GetLocalizedValue("SelectImage")</a>
+                                        <input asp-for="Logo" id="fileAvatar" class="file-upload-input" type='file' onchange="readURL(this);" style="display:none;" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div lass="image-upload-wrap form-group col-md-6" id="currentPhoto">
+                                            <div class="image-title-wrap"><span class="image-title">@SharedLocalizer.GetLocalizedValue("Image")</span></div>
+                                            <img width="320" alt="image" class="rounded mt-3" src="~/images/logos/@Model.LogoUrl">
+                                        </div>
+
+                                        <div class="image-upload-wrap form-group" style="display:none;">
+                                            <div class="image-title-wrap"><span id="uploadTitle" class="image-title">@SharedLocalizer.GetLocalizedValue("Image")</span><a onclick="removeUpload()" class="btn remove-image"><span class="fa fa-times"></span></a></div>
+                                            <img width="320" class="file-upload-image" src="#" alt="your image" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group form-material col-xl-6">
+                                        <label class="form-col-form-labelDescription">
+                                            @SharedLocalizer.GetLocalizedValue("Description")* <span asp-validation-for="Description" class="text-danger"></span>
+                                        </label>
+                                        <textarea asp-for="Description" rows="3" type="text" placeholder="@SharedLocalizer.GetLocalizedValue("Description")" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group form-material col-xl-6">
+                                        <label class="form-col-form-labelDescription">
+                                            @SharedLocalizer.GetLocalizedValue("Address")* <span asp-validation-for="Address" class="text-danger"></span>
+                                        </label>
+                                        <textarea asp-for="Address" rows="3" type="text" placeholder="@SharedLocalizer.GetLocalizedValue("Address")" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group form-material col-xl-6">
+                                        <label class="form-col-form-label">
+                                            @SharedLocalizer.GetLocalizedValue("CurrencyUnit") <span asp-validation-for="CurrencySymbol" class="text-danger"></span>
+                                        </label>
+                                        <input asp-for="CurrencySymbol" type="text" maxlength="4" placeholder="$, € ..." class="form-control">
+                                    </div>
+
+                                    <div class="form-group form-material col-xl-6 mt-4">
+                                        <p><b>@SharedLocalizer.GetLocalizedValue("CurrencyDescription")</b></p>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-md-12 form-group">
+                                        <input asp-for="IsShowTableName" type="checkbox">
+                                        <label class="form-check-label">@SharedLocalizer.GetLocalizedValue("TableNameShowInQr") </label>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                    <div class="col-md-12 form-group">
+                                        <input asp-for="IsShowTableNo" type="checkbox">
+                                        <label class="form-check-label">@SharedLocalizer.GetLocalizedValue("TableNoShowInQr") </label>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="container">
+                                        <button onclick="createLoad()" class="btn btn-outline btn-primary btn-block"> @SharedLocalizer.GetLocalizedValue("Save")</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+

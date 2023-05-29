@@ -1,0 +1,170 @@
+﻿@model RestaurantStaffViewModel
+@{
+    ViewData["Title"] = "AddStaff";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section Styles{
+    <link href="~/css/photo.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="/lib/jasny/jasny-bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnStaff').toggleClass('btn-outline');
+
+        });
+
+        const createLoad = () => {
+            $('#boxStaffForm').children('.ibox-content').toggleClass('sk-loading');
+        }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                document.getElementById('currentPhoto').style.display = 'none';
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.image-upload-wrap').show();
+                    $('.image-title').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                $('.image-upload-wrap').hide();
+            }
+        }
+
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.image-upload-wrap').hide();
+            document.getElementById('fileAvatar').value = null;
+            document.getElementById('currentPhoto').style.display = 'block';
+        };
+    </script>
+
+}
+
+<div class="row">
+    @await Component.InvokeAsync("RestaurantManagerMenu")
+    <div class="col-md-9">
+        <div id="formAdd" class="row animated">
+            <div class="col-md-12">
+                <div class="ibox float-e-margins" id="boxStaffForm">
+                    <div class="ibox-content">
+                        <div class="sk-spinner sk-spinner-wave">
+                            <div class="sk-rect1"></div>
+                            <div class="sk-rect2"></div>
+                            <div class="sk-rect3"></div>
+                            <div class="sk-rect4"></div>
+                            <div class="sk-rect5"></div>
+                        </div>
+
+                        <form asp-action="AddStaff" asp-controller="Staff" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-lg-12 control">
+                                    <label class="form-col-form-label" for="">@SharedLocalizer.GetLocalizedValue("Menu")</label>
+                                    <div style="border-top: 1px solid#888; padding-top:15px; font-size:80%"></div>
+                                </div>
+                            </div>
+                            <br>
+                            <input hidden asp-for="RestaurantId" />
+
+                            <div class="row">
+                                <div class="form-group form-material col-xl-6">
+                                    <label class="form-col-form-label">
+                                        @SharedLocalizer.GetLocalizedValue("UserName")* <span asp-validation-for="UserName" class="text-danger"></span>
+                                    </label>
+                                    <input asp-for="UserName" type="text" placeholder="waiter1, waiter2 ..." class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group form-material col-xl-6">
+                                    <label class="form-col-form-label">
+                                        @SharedLocalizer.GetLocalizedValue("Name")* <span asp-validation-for="Name" class="text-danger"></span>
+                                    </label>
+                                    <input asp-for="Name" type="text" placeholder="Emilie, Mike" class="form-control">
+                                </div>
+                                <div class="form-group form-material col-xl-6">
+                                    <label class="form-col-form-label">
+                                        @SharedLocalizer.GetLocalizedValue("Surname")* <span asp-validation-for="Surname" class="text-danger"></span>
+                                    </label>
+                                    <input asp-for="Surname" type="text" placeholder="Fopro, Henry" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group form-material col-xl-6">
+                                    <label class="form-col-form-label">
+                                        @SharedLocalizer.GetLocalizedValue("Email")* <span asp-validation-for="Email" class="text-danger"></span>
+                                    </label>
+                                    <input asp-for="Email" type="text" placeholder="example@hotmail.com"
+                                           class="form-control">
+                                </div>
+
+                                <div class="form-group form-material col-xl-6">
+                                    <label class="form-col-form-label">
+                                        @SharedLocalizer.GetLocalizedValue("Phone")* <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                    </label>
+                                    <input data-mask="(999) 999-9999" asp-for="PhoneNumber" type="text" class="form-control" placeholder="3453..">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group form-material col-xl-6">
+                                    <label class="form-col-form-label">
+                                        @SharedLocalizer.GetLocalizedValue("TemporaryPassword")* <span asp-validation-for="Password" class="text-danger"></span>
+                                    </label>
+                                    <input asp-for="Password" type="password" placeholder="****"
+                                           class="form-control">
+                                </div>
+
+                                <div class="form-group form-material col-xl-6">
+                                    <label class="form-col-form-label">
+                                        @SharedLocalizer.GetLocalizedValue("PasswordAgain")* <span asp-validation-for="PasswordAgain" class="text-danger"></span>
+                                    </label>
+                                    <input asp-for="PasswordAgain" type="password" placeholder="****" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="float-left">@SharedLocalizer.GetLocalizedValue("Image") : </label>
+                                    <span class="text-danger" asp-validation-for="Photo"></span>
+                                    <br />
+                                    <br />
+                                    <a class="btn btn-default float-left" style="cursor:pointer;" onclick="$('.file-upload-input').trigger( 'click' )">@SharedLocalizer.GetLocalizedValue("SelectImage")</a>
+                                    <input asp-for="Photo" id="fileAvatar" class="file-upload-input" type='file' onchange="readURL(this);" style="display:none;" />
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div lass="image-upload-wrap form-group col-md-6" id="currentPhoto">
+                                        <div class="image-title-wrap"><span class="image-title">@SharedLocalizer.GetLocalizedValue("Image")</span></div>
+                                        <img alt="image" class="rounded mt-3" src="~/images/avatars/default.png">
+                                    </div>
+
+                                    <div class="image-upload-wrap form-group" style="display:none;">
+                                        <div class="image-title-wrap"><span id="uploadTitle" class="image-title">@SharedLocalizer.GetLocalizedValue("Image")</span><a onclick="removeUpload()" class="btn remove-image"><span class="fa fa-times"></span></a></div>
+                                        <img width="270" class="file-upload-image" src="#" alt="your image" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="container">
+                                    <button onclick="createLoad()" class="btn btn-outline btn-primary btn-block"> @SharedLocalizer.GetLocalizedValue("Save")</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

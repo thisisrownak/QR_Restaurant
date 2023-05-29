@@ -1,0 +1,210 @@
+﻿@model OrdersOfTableViewModel
+@{
+    ViewData["Title"] = "OrdersOfTable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <style>
+        th {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+
+        td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+    </style>
+}
+
+    @section Scripts {
+    <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/js/ordersOfTableController.js"></script>
+}
+
+    <div class="row">
+        @await Component.InvokeAsync("RestaurantManagerMenu")
+        <div class="col-md-9">
+            <div class="ibox float-e-margins" id="boxOrder">
+                <div class="ibox-content">
+                    <div class="sk-spinner sk-spinner-wave">
+                        <div class="sk-rect1"></div>
+                        <div class="sk-rect2"></div>
+                        <div class="sk-rect3"></div>
+                        <div class="sk-rect4"></div>
+                        <div class="sk-rect5"></div>
+                    </div>
+                    <h3 class="text-qrRest-dark text-center">
+                        <a href="/restaurant/restaurantmanager" class="btn btn-outline btn-primary btn-sm float-left"><i class="fa fa-long-arrow-left mt-1"></i></a>
+                        @SharedLocalizer.GetLocalizedValue("TableNo") : @Model.TableNo  @SharedLocalizer.GetLocalizedValue("Payment")
+                    </h3>
+                    <hr />
+                    <input hidden value="@SharedLocalizer.GetLocalizedValue("Completed")" id="lblCompleted" />
+                    <input hidden value="@Model.TableId" id="txtTableId" />
+
+                    <div class="col-md-12">
+                        <div class="row table-responsive" id="nonPayOrder">
+                            <table class="table table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>@SharedLocalizer.GetLocalizedValue("Table")</th>
+                                        <th>@SharedLocalizer.GetLocalizedValue("Piece")</th>
+                                        <th>@SharedLocalizer.GetLocalizedValue("Product")</th>
+                                        <th>@SharedLocalizer.GetLocalizedValue("Note")</th>
+                                        <th>@SharedLocalizer.GetLocalizedValue("Clock")</th>
+                                        <th>@SharedLocalizer.GetLocalizedValue("Status")</th>
+                                        <th>@SharedLocalizer.GetLocalizedValue("Cancel")</th>
+                                        <th>@SharedLocalizer.GetLocalizedValue("Complete")</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @if (Model.Orders == null || Model.Orders.Count() == 0)
+                                {
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><br /><br /> @SharedLocalizer.GetLocalizedValue("NoOrderMessage") <br /><br /><br /></td>
+                                        <td><i class="fa fa-bell-o fa-2x"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    @foreach (var item in Model.Orders)
+                                    {
+                                        <tr id="order-@item.Id">
+                                            <td>
+                                                <div class="col-md-12">
+                                                    <span><strong>@SharedLocalizer.GetLocalizedValue("TableNo") :</strong> @item.TableNo </span><br />
+                                                    <span><strong>@SharedLocalizer.GetLocalizedValue("TableName") : </strong> @item.TableName </span>
+                                                </div>
+                                            </td>
+                                            <td class="cart-item-upFont">
+                                                @foreach (var quantity in item.Quantities)
+                                                {
+                                                    <p>@quantity</p>
+                                                }
+                                            </td>
+                                            <td class="cart-item-upFont">
+                                                @for (int i = 0; i < item.Products.Count; i++)
+                                                {
+                                                    <p>@item.Products[i]  <span class="text-menu-description text-muted">@item.ProductFeatures[i] </span></p>
+                                                }
+                                            </td>
+                                            <td> @item.Note </td>
+                                            <td class="cart-item-upFont"> @item.Date </td>
+                                            <td>
+                                                <div id="badge-@item.Id">
+                                                    <span class='badge @(item.Status != @SharedLocalizer.GetLocalizedValue("Rejected") ? (item.Status == @SharedLocalizer.GetLocalizedValue("Completed") ? "badge-primary" : "badge-success") : "badge-danger")'>@item.Status</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button onclick="openDeleteModal('@item.Id')" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                                            </td>
+                                            <td>
+                                                @if (item.Staff.Count() == 0)
+                                                {
+                                                    <span class='text-danger'>@SharedLocalizer.GetLocalizedValue("AddWaiterWarning")</span>
+                                                }
+                                                else
+                                                {
+                                                    if (item.Status == SharedLocalizer.GetLocalizedValue("Completed"))
+                                                    {
+                                                        <p>@SharedLocalizer.GetLocalizedValue("Completed")</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div id="staff-@item.Id">
+                                                            @foreach (var staff in item.Staff)
+                                                            {
+                                                                <a onclick="completeOrder('@item.Id', '@staff.UserId')">
+                                                                    <img src="/images/avatars/@staff.Avatar" class="rounded-circle img-sm">
+                                                                </a>
+                                                            }
+                                                        </div>
+
+                                                    }
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                        @if (Model.Orders != null && Model.Orders.Count() != 0)
+                        {
+                            <table class="table invoice-total">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>@SharedLocalizer.GetLocalizedValue("Total") :</strong>
+                                        </td>
+                                        <td>@Model.Orders.Sum(x => x.Total) @(String.IsNullOrEmpty(Model.CurrencySymbol) ? SharedLocalizer.GetLocalizedValue("Currency") : Model.CurrencySymbol)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <button onclick="openPayModal()" class="btn btn-outline btn-primary float-right"><i class="fa fa-credit-card mt-1"></i> -  @SharedLocalizer.GetLocalizedValue("GetPaid")</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="delete-modal" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated fadeIn">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <p class="p-y m-t text-center">
+                        <i class="fa fa-remove text-warning fa-5x"></i>
+                        <button type="button" class="close mr-3" data-dismiss="modal">
+                            <span aria-hidden="true">&#xD7;</span><span class="sr-only">@SharedLocalizer.GetLocalizedValue("Close")</span>
+                        </button>
+                    </p>
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center">@SharedLocalizer.GetLocalizedValue("CancelQuestion")</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary text-white" data-dismiss="modal" style="color:#910400;">@SharedLocalizer.GetLocalizedValue("No")</button> <a onclick="cancelOrder()" class="btn btn-primary text-white">@SharedLocalizer.GetLocalizedValue("Yes")</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="pay-modal" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated fadeIn">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <p class="p-y m-t text-center">
+                        <i class="fa fa-remove text-warning fa-5x"></i>
+                        <button type="button" class="close mr-3" data-dismiss="modal">
+                            <span aria-hidden="true">&#xD7;</span><span class="sr-only">@SharedLocalizer.GetLocalizedValue("Close")</span>
+                        </button>
+                    </p>
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center">@SharedLocalizer.GetLocalizedValue("GetPaidQuestion")</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary text-white" data-dismiss="modal" style="color:#910400;">@SharedLocalizer.GetLocalizedValue("No")</button> <a onclick="payOrder()" class="btn btn-primary text-white">@SharedLocalizer.GetLocalizedValue("Yes")</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿/*hr with centered text*/
+.enhanced-hr {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+    .enhanced-hr > span {
+        position: relative;
+        display: inline-block;
+    }
+
+        .enhanced-hr > span:before,
+        .enhanced-hr > span:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 9999px;
+            height: 1px;
+            background: #000;
+        }
+
+        .enhanced-hr > span:before {
+            right: 100%;
+            margin-right: 15px;
+        }
+
+        .enhanced-hr > span:after {
+            left: 100%;
+            margin-left: 15px;
+        }
+
+.hr-dot {
+    height: 6px;
+    width: 6px;
+    margin: 0 8px;
+    background-color: #ffffff;
+    border-radius: 100px;
+    background-color: #231f20;
+}
+
+.enhanced-hr-2 > span:before,
+.enhanced-hr-2 > span:after {
+    background: red;
+}
+
+.enhanced-hr-3 > span:before,
+.enhanced-hr-3 > span:after {
+    background: #c7c7c7;
+}

@@ -1,0 +1,176 @@
+﻿@model RestaurantStaffViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/lib/DataTables/datatables.min.css" rel="stylesheet" />
+    <style>
+        td {
+            vertical-align: middle !important;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script src="~/lib/DataTables/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnStaff').toggleClass('btn-outline');
+            $('.dataTables-list').DataTable({
+                pageLength: 10,
+                autoWidth: false,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy' },
+                    { extend: 'csv' },
+                    { extend: 'excel', title: 'Excel List' },
+                    { extend: 'pdf', title: 'Pdf' },
+
+                    {
+                        extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ]
+
+            });
+        });
+
+        let selectedId = 0;
+
+        openDeleteModal = (id) => {
+            selectedId = id;
+            $('#delete-modal').modal();
+        }
+
+        passiveStaff = () => {
+            location.href = "/staff/passivestaff?userId=" + selectedId;
+        };
+
+    </script>
+}
+
+<div class="row">
+    @await Component.InvokeAsync("RestaurantManagerMenu")
+
+    <div class="col-md-9">
+        <div class="ibox float-e-margins" id="fboxSf">
+            <div class="ibox-title text-center">
+                <h3 class="col-md-12">@SharedLocalizer.GetLocalizedValue("Staffs")</h3>
+                <a href="/staff/addstaff"><i class="fa fa-plus"></i>@SharedLocalizer.GetLocalizedValue("Add") </a>
+            </div>
+            <div class="ibox-content">
+                <br />
+                <div class="table-responsive textingad">
+                    <table class="table table-hover dataTables-list">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @SharedLocalizer.GetLocalizedValue("Image")
+                                </th>
+                                <th>
+                                    @SharedLocalizer.GetLocalizedValue("UserName")
+                                </th>
+                                <th>
+                                    @SharedLocalizer.GetLocalizedValue("Name")
+                                </th>
+                                <th>
+                                    @SharedLocalizer.GetLocalizedValue("Email")
+                                </th>
+                                <th>
+                                    @SharedLocalizer.GetLocalizedValue("Phone")
+                                </th>
+                                <th>
+                                    @SharedLocalizer.GetLocalizedValue("Active")
+                                </th>
+                                <th>@SharedLocalizer.GetLocalizedValue("Action")</th>
+                                <th>@SharedLocalizer.GetLocalizedValue("Delivery")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Staff)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="col-md-12">
+                                            <img src="~/images/avatars/@item.Avatar" class="rounded-circle img-md">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserName)
+                                    </td>
+                                    <td>
+                                        @item.Name @item.Surname
+                                    </td>
+                                    <td>
+                                        @item.Email
+                                    </td>
+                                    <td>
+                                        @item.PhoneNumber
+                                    </td>
+                                    <td>
+                                        @if (item.EmailConfirmed)
+                                        {
+                                            <span class='badge badge-primary'>@SharedLocalizer.GetLocalizedValue("Active")</span>
+                                        }
+                                        else
+                                        {
+                                            <span class='badge badge-danger'>@SharedLocalizer.GetLocalizedValue("Passive")</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.EmailConfirmed)
+                                        {
+                                            <a href="#" onclick="openDeleteModal('@item.Id');">@SharedLocalizer.GetLocalizedValue("Block")</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="/staff/staffactivated?userId=@item.Id">@SharedLocalizer.GetLocalizedValue("Unblock")</a>
+                                        }
+                                    </td>
+                                    <td><a href="/staff/DeliveredOrders?userId=@item.Id" class="btn btn-outline btn-primary btn-sm">@SharedLocalizer.GetLocalizedValue("Delivery")</a> </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="delete-modal" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated fadeIn">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <p class="p-y m-t text-center">
+                        <i class="fa fa-remove text-warning fa-5x"></i>
+                        <button type="button" class="close mr-3" data-dismiss="modal">
+                            <span aria-hidden="true">&#xD7;</span><span class="sr-only">@SharedLocalizer.GetLocalizedValue("Close")</span>
+                        </button>
+                    </p>
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center">@SharedLocalizer.GetLocalizedValue("DeleteQuestion")</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary text-white" data-dismiss="modal" style="color:#910400;">@SharedLocalizer.GetLocalizedValue("No")</button> <a onclick="passiveStaff()" class="btn btn-primary text-white">@SharedLocalizer.GetLocalizedValue("Yes")</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

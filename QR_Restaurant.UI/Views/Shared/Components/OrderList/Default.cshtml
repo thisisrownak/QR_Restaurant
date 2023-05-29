@@ -1,0 +1,50 @@
+﻿@model List<RestaurantOrderJsonModel>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body new-user order-list">
+                <h4 class="header-title mt-0 mb-3">قائمة الطلبات</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="border-top-0">الطلب</th>
+                                <th class="border-top-0">رقم الطاولة</th>
+                                <th class="border-top-0">تاريخ الطلب</th>
+                                <th class="border-top-0">الفاتورة</th>
+                                <th class="border-top-0">الحالة</th>
+                            </tr><!--end tr-->
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img class="" src="/assets/images/users/user-1.jpg" alt="user">
+                                    </td>
+                                    <td>
+                                        @item.Quantities.Sum()
+                                    </td>
+
+                                    <td>@item.Date</td>
+
+                                    <td>@item.Total</td>
+                                    <td>
+                                        <span class="badge badge-boxed  badge-soft-success">@item.Status</span>
+                                    </td>
+                                </tr>
+                            }
+                            
+                            
+                        </tbody>
+                    </table> <!--end table-->
+                </div><!--end /div-->
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div><!--end col-->
+</div><!--end row-->
+
+<script>
+
+</script>
+

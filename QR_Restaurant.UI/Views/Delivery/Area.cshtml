@@ -1,0 +1,180 @@
+﻿@using QR_Restaurant.Data.Entities;
+@model IEnumerable<DeliveryArea>
+
+
+@{
+    ViewData["Title"] = "Delivery Area";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-10 py-2">
+            <button onclick="OpneCareateModal()" class="btn btn-primary">Add Area</button>
+        </div>
+        <div class="col-2 py-2">
+            <button onclick="OpenDeliveryChargeModal()" class="btn btn-primary">Edit</button>
+            <label>Delivery Charge : @ViewBag.DeliveryCharge</label>
+        </div>
+     </div>
+    <div class="row">
+        @foreach(var area in Model)
+        {
+            <div class="col-3">
+                <div class="card p-2">
+                    <iframe src="https://maps.google.com/maps?q=@area.Latitude,@area.Longitude&z=15&output=embed" height="270" frameborder="0" style="border:0"></iframe>
+                    <div class="card-b4ody">
+                        <h3 class="card-title">@area.Name</h3>
+                        <h5>Delivery Charge: @area.DeliveryCharge</h5>
+                        <h5>Range: @area.Range Km</h5>
+                    </div>
+                </div>
+            </div>
+        }
+        
+    </div>
+    
+   
+</div>
+<style>
+    #map {
+        width: 100%;
+        height: 300px;
+    }
+</style>
+<!--Add Area Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Area</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="Name">Name</label>
+                        <input type="text" class="form-control" id="Name" placeholder="Name">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="Range">Range</label>
+                            <input type="number" class="form-control" id="Range" placeholder="Range">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="DeliveryCharge">Delivery Charge</label>
+                            <input type="number" class="form-control" id="DeliveryCharge" placeholder="Delivery Charge">
+                        </div>
+                    </div>
+                    <div>
+                        <div id="map"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
+                <button type="button" onclick="SaveArea()" class="btn btn-primary">Add Area</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Edit Delivery Charge Modal-->
+<div class="modal fade" id="deliveryChargeModal" tabindex="-1" role="dialog" aria-labelledby="deliveryChargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deliveryChargeModalLabel">Update Delivery Charge</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="Delivery">Delivery Charge</label>
+                            <input type="number" class="form-control" id="Delivery" placeholder="Delivery Charge">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
+                <button type="button" onclick="UpdateDeliveryCharge()" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var _location = {};
+    const OpneCareateModal=()=>{
+        $('#exampleModal').modal('show');
+    }
+
+    const OpenDeliveryChargeModal = () => {
+        $('#deliveryChargeModal').modal('show');
+    }
+
+    var locationPicker = new locationPicker('map', {
+        setCurrentPosition: true,
+    }, {
+        zoom: 15
+    });
+
+    const SaveArea = () => {
+        var data={};
+        data.Name = $('#Name').val();
+        data.Range = Number($('#Range').val());
+        data.DeliveryCharge = Number($('#DeliveryCharge').val());
+        data.Latitude = _location.lat;
+        data.Longitude = _location.lng;
+        
+
+        var FormData = JSON.stringify(data);
+
+        $.ajax({
+            type: "POST",
+            url: '/Delivery/SaveArea',
+            data: data,
+            //dataType: "json",
+            //contentType: "application/json",    
+            success: function () {
+                $('#exampleModal').modal('hide');
+            },
+            error: function () {
+                //error code here
+            }
+        });
+    }
+
+    const UpdateDeliveryCharge = () => {
+        debugger;
+        var data = {};
+        data.DeliveryCharge = Number($('#Delivery').val());
+
+        var FormData = JSON.stringify(data);
+
+        $.ajax({
+            type: "POST",
+            url: '/Delivery/UpdateDeliveryCharge',
+            data: data,
+            success: function () {
+                $('#deliveryChargeModal').modal('hide');
+            },
+            error: function () {
+                //error code here
+            }
+        });
+    }
+
+    google.maps.event.addListener(locationPicker.map, 'idle', function (event) {
+        var _loc = locationPicker.getMarkerPosition();
+        _location.lat = _loc.lat;
+        _location.lng = _loc.lng;
+        console.log(_location);
+    });
+</script>

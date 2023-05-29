@@ -1,0 +1,166 @@
+﻿@model DeliveredOrdersViewModel
+@{
+    ViewData["Title"] = "DeliveredOrders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/lib/DataTables/datatables.min.css" rel="stylesheet" />
+    <style>
+        td {
+            vertical-align: middle !important;
+        }
+
+        .date-text {
+            text-align: center;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script src="~/lib/DataTables/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnStaff').toggleClass('btn-outline');
+
+            $('.dataTables-list').DataTable({
+                pageLength: 10,
+                autoWidth: false,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy' },
+                    { extend: 'csv' },
+                    { extend: 'excel', title: 'Excel List' },
+                    { extend: 'pdf', title: 'Pdf' },
+
+                    {
+                        extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ]
+
+            });
+        });
+
+        const startReport = () => {
+            $('#fboxSf').children('.ibox-content').toggleClass('sk-loading');
+        };
+
+    </script>
+}
+
+<div class="row">
+    @await Component.InvokeAsync("RestaurantManagerMenu")
+
+    <div class="col-md-9">
+        <div class="ibox float-e-margins" id="fboxSf">
+            <div class="ibox-title text-center">
+                <h3 class="col-md-12">@SharedLocalizer.GetLocalizedValue("Delivery")</h3>
+
+            </div>
+            <div class="ibox-content ibox-br">
+                <form asp-action="DeliveredOrders">
+                    <div class="row">
+                        <div class="form-group form-material col-xl-6">
+                            <label class="form-col-form-label">
+                                @SharedLocalizer.GetLocalizedValue("Waiter")
+                            </label>
+                            <input disabled type="text" value="@Model.WaiterNameAndSurname" class="form-control">
+                        </div>
+                        <input hidden asp-for="WaiterId" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-col-form-label font-bold"> @SharedLocalizer.GetLocalizedValue("DateRange") </label>
+                            <span class="text-danger" asp-validation-for="EndDate"></span>
+                            <div class="input-group">
+                                <input type="date" class="form-control date-text" asp-for="StartDate" />
+                                <span class="input-group-addon">to</span>
+                                <input type="date" class="form-control date-text" asp-for="EndDate" />
+                            </div>
+                    </div>
+                    <button type="submit" onclick="startReport()" class="btn btn-outline btn-primary btn-block">@SharedLocalizer.GetLocalizedValue("Delivery").ToString().ToUpper()</button>
+                </form>
+                <br />
+                <br />
+
+
+
+                @if (Model.Orders != null && Model.Orders.Count() == 0)
+                {
+                    <hr />
+                    <p class="text-center"><strong> @SharedLocalizer.GetLocalizedValue("NoData")  <i class="fa fa-bell-o"></i> </strong></p>
+                }
+                else if (Model.Orders != null && Model.Orders.Count() > 0)
+                {
+                    <hr />
+                    <h3 class="text-center"> @SharedLocalizer.GetLocalizedValue("Delivery") : @Model.Orders.Count()   @SharedLocalizer.GetLocalizedValue("Piece")</h3>
+                    <br />
+                    <div class="table-responsive textingad">
+                        <table class="table table-hover dataTables-list">
+                            <thead>
+                                <tr>
+                                    <th>@SharedLocalizer.GetLocalizedValue("Table")</th>
+                                    <th>@SharedLocalizer.GetLocalizedValue("Piece")</th>
+                                    <th>@SharedLocalizer.GetLocalizedValue("Product")</th>
+                                    <th>@SharedLocalizer.GetLocalizedValue("Note")</th>
+                                    <th>@SharedLocalizer.GetLocalizedValue("Clock")</th>
+                                    <th>@SharedLocalizer.GetLocalizedValue("Total")</th>
+                                    <th>@SharedLocalizer.GetLocalizedValue("Status")</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Orders)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="col-md-12">
+                                                <span><strong>@SharedLocalizer.GetLocalizedValue("TableNo") :</strong>@item.TableNo</span><br />
+                                                <span><strong>@SharedLocalizer.GetLocalizedValue("TableName") : @item.TableName</strong></span>
+                                            </div>
+                                        </td>
+                                        <td class="cart-item-upFont">
+                                            @foreach (var q in item.Quantities)
+                                            {
+                                                <p>@q</p>
+                                            }
+                                        </td>
+                                        <td class="cart-item-upFont">
+                                            @foreach (var p in item.Products)
+                                            {
+                                                <p>@p</p>
+                                            }
+                                        </td>
+                                        <td> @item.Note </td>
+                                        <td>@item.Date</td>
+                                        <td>@item.Total @(String.IsNullOrEmpty(Model.CurrencySymbol) ? SharedLocalizer.GetLocalizedValue("Currency") : Model.CurrencySymbol) </td>
+                                        <td>
+                                            @if (item.Status == @SharedLocalizer.GetLocalizedValue("Completed"))
+                                            {
+                                                <span class="badge badge-primary">@SharedLocalizer.GetLocalizedValue(item.Status)</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-danger">@SharedLocalizer.GetLocalizedValue(item.Status)</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

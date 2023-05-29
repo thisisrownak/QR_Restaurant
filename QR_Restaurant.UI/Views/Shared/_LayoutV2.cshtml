@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - QR MENU</title>
+    <link rel="shortcut icon" type="image/png" href="~/images/favicon.png" />
+    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Noto Kufi Arabic' rel='stylesheet'>
+    <link href="~/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets/css/icons.css" rel="stylesheet" />
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLDDvqQKLjRylmSXPRcQ85IIYr4jKuirE"></script>
+    <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
+</head>
+<script>
+    const GOOGLE_API_KEY='AIzaSyCLDDvqQKLjRylmSXPRcQ85IIYr4jKuirE'
+</script>
+<body>  
+     <!-- Top Bar Start -->
+        <div class="topbar">
+             <!-- Navbar -->
+             <nav class="navbar-custom">
+
+                <!-- LOGO -->
+                <div class="topbar-left">
+                <a asp-controller="Account" asp-action="Login" class="logo">
+                      
+                        <span>
+                            <img src="/assets/images/logo-dark.png" WIDTH="180" height="63" alt="logo-large" >
+                        </span>
+                    </a>
+                </div>
+    
+                <ul class="list-unstyled topbar-nav float-right mb-0">
+
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="false" aria-expanded="false">
+                            <i class="mdi mdi-bell-outline nav-icon"></i>
+                            <span class="badge badge-danger badge-pill noti-icon-badge">2</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-left dropdown-lg">
+                            <!-- item-->
+                            <h6 class="dropdown-item-text">
+                                الاشعارات
+                            </h6>
+                            <div class="slimscroll notification-list">
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                                    <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
+                                    <p class="notify-details">طلب جديد على طاولة 15<small class="text-muted">محتويات الطلب</small></p>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-warning"><i class="mdi mdi-message"></i></div>
+                                    <p class="notify-details">طلب النادل على طاولة 20<small class="text-muted">الزبون على طاولة 20 يطلب النادل</small></p>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-info"><i class="mdi mdi-glass-cocktail"></i></div>
+                                    <p class="notify-details">طلب الفاتورة على طاولة 10<small class="text-muted">الزبون على طاولة 10 يطلب الفاتورة</small></p>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-primary"><i class="mdi mdi-cart-outline"></i></div>
+                                    <p class="notify-details">طلب جديد على طاولة 1<small class="text-muted">تم تسجيل طلب جديد على طاولة 10</small></p>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-danger"><i class="mdi mdi-message"></i></div>
+                                    <p class="notify-details">طلب جديد على طاولة 1<small class="text-muted">تم تسجيل طلب جديد على طاولة 10</small></p>
+                                </a>
+                            </div>
+                            <!-- All-->
+                            <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
+                               مشاهدة الكل <i class="fi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="false" aria-expanded="false">
+                            <img src="~/assets/images/users/user-1.jpg" alt="profile-user" class="rounded-circle" /> 
+                            <span class="ml-1 nav-user-name hidden-sm"> <i class="mdi mdi-chevron-down"></i> </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-left">
+                            <a class="dropdown-item" href="#">صفحتك <i class="dripicons-user text-muted mr-2"></i></a>
+                            <a class="dropdown-item" href="#">الطلبات <i class="dripicons-wallet text-muted mr-2"></i></a>
+                            <a class="dropdown-item" href="#"><i class="dripicons-gear text-muted mr-2"></i> الاعدادات</a>
+                            
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"><i class="dripicons-exit text-muted mr-2"></i> تسجيل الخروج</a>
+                        </div>
+                    </li>
+                    <li class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle nav-link" id="mobileToggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </li>    
+                </ul>
+    
+
+            </nav>
+            <!-- end navbar-->
+        </div>
+
+        @await Component.InvokeAsync("ResturentInfo")
+
+        <div class="page-wrapper">
+            <div class="page-wrapper-inner">
+            @await Component.InvokeAsync("ControlBoardMenu")
+            </div>
+            <!--end page-wrapper-inner -->
+            <!-- Page Content-->
+            <div class="page-content">
+                @RenderBody()
+
+                <footer class="footer text-center text-sm-left">
+                    &copy; 2023 ORDRY <span class="text-muted d-none d-sm-inline-block float-right">POWERED BY  ENSEGYPT</span>
+                </footer>
+            </div>
+            <!-- end page content -->
+        </div>
+       
+
+
+   
+
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/waves.min.js"></script>
+    <script src="~/assets/js/jquery.slimscroll.min.js"></script>
+
+    <script src="~/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="~/assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+
+    <script src="~/assets/plugins/moment/moment.js"></script>
+    <script src="~/assets/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="https://apexcharts.com/samples/assets/irregular-data-series.js"></script>
+    <script src="https://apexcharts.com/samples/assets/series1000.js"></script>
+    <script src="https://apexcharts.com/samples/assets/ohlc.js"></script>
+    <script src="~/assets/pages/jquery.dashboard.init.js"></script>
+
+    <!-- App js -->
+    <script src="~/assets/js/app.js"></script>
+
+
+    @if (TempData["messagex"] != null)
+    {
+        <input id="mesxyz" type="hidden" value="@TempData["messagex"]" />
+        <script type="text/javascript">
+            var message = document.getElementById('mesxyz').value;
+            getSuccessNotification(message);
+        </script>
+    }
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

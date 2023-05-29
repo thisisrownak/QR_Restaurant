@@ -1,0 +1,42 @@
+﻿
+@if (User.Identity.IsAuthenticated)
+{
+<li class="nav-item">   
+
+    <div class="dropdown profile-element">
+        <a class="nav-link" data-toggle="dropdown" aria-expanded="false">
+            <span>                
+                <i class="@(User.IsInRole("Admin") ? "fa fa-cog" : "fa fa-cutlery") mr-2"></i><i class="fa fa-chevron-down ml-1"></i>
+            </span>
+        </a>
+        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="dropdown-item">
+                    <a href="/admin/home">@SharedLocalizer.GetLocalizedValue("ManagementPanel")</a>
+                </li>
+            }
+            else
+            {
+                <li class="dropdown-item">
+                    <a href="/restaurant/restaurantmanager">@SharedLocalizer.GetLocalizedValue("ManagementPanel")</a>
+                </li>
+            }
+
+            <li class="dropdown-item">
+                <a href="/Account/ChangePassword">@SharedLocalizer.GetLocalizedValue("ChangePassword")</a>
+            </li>
+            <li class="divider"></li>
+            <li class="dropdown-item"><a href="/Account/logout">@SharedLocalizer.GetLocalizedValue("Logout")</a></li>
+        </ul>
+    </div>
+</li>
+}
+else
+{
+    <li class="nav-item">
+        <a style="color:whitesmoke;" href="/Account/Login">
+            <i class="fa fa-sign-in"></i> @SharedLocalizer.GetLocalizedValue("Login")
+        </a>
+    </li>
+}

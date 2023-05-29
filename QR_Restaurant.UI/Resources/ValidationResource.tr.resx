@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Lütfen adres girin.</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Lütfen e-posta giriniz.</value>
+  </data>
+  <data name="EmailFormat" xml:space="preserve">
+    <value>Doğru biçimde bir e-posta adresi girmediniz.</value>
+  </data>
+  <data name="EmailMaxLength" xml:space="preserve">
+    <value>E-posta adresi 200 karakteri geçmemelidir.</value>
+  </data>
+  <data name="Exists" xml:space="preserve">
+    <value>Girilen alanlardan birisi ile veritabanında kayıt mevcuttur.</value>
+  </data>
+  <data name="ImageControl" xml:space="preserve">
+    <value>Yüklediğiniz dosya bir resim dosyası olmalı ve 6MB’yi geçmemelidir.</value>
+  </data>
+  <data name="MaxAddress" xml:space="preserve">
+    <value>Adres 200 karakteri geçmemelidir.</value>
+  </data>
+  <data name="MaxInt" xml:space="preserve">
+    <value>Sayı değeri olması gerekenden daha büyük.</value>
+  </data>
+  <data name="MaxLength" xml:space="preserve">
+    <value>Alan için maksimum karakter sayısı aşıldı.</value>
+  </data>
+  <data name="MaxManagerName" xml:space="preserve">
+    <value>İsim 50 karakteri geçmemelidir.</value>
+  </data>
+  <data name="MaxPhone" xml:space="preserve">
+    <value>Telefon numarası 15 karakteri geçmemelidir.</value>
+  </data>
+  <data name="MaxRestaurantDescription" xml:space="preserve">
+    <value>Açıklama 1000 karakteri geçmemelidir.</value>
+  </data>
+  <data name="MaxRestaurantName" xml:space="preserve">
+    <value>Restoran adı 150 karakteri geçmemelidir.</value>
+  </data>
+  <data name="MaxSurname" xml:space="preserve">
+    <value>Soyadı 70 karakteri geçmemelidir.</value>
+  </data>
+  <data name="MaxTableName" xml:space="preserve">
+    <value>Tablo adı 500 karakteri geçmemelidir.</value>
+  </data>
+  <data name="MaxTableNo" xml:space="preserve">
+    <value>Tablo adı 10000 karakteri geçmemelidir.</value>
+  </data>
+  <data name="MinInt" xml:space="preserve">
+    <value>Sayı sıfırdan büyük olmalıdır.</value>
+  </data>
+  <data name="MinTableNo" xml:space="preserve">
+    <value>Tablo numarası 0'dan büyük olmalıdır.</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Lütfen isim giriniz.</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Lütfen yeni şifrenizi girin.</value>
+  </data>
+  <data name="NotEmpty" xml:space="preserve">
+    <value>Lütfen alanı doldurunuz.</value>
+  </data>
+  <data name="NumberFormat" xml:space="preserve">
+    <value>Alan sayılardan oluşmalıdır.</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Lütfen şifre giriniz.</value>
+  </data>
+  <data name="PasswordAgain" xml:space="preserve">
+    <value>Parola tekrarı doğru değil.</value>
+  </data>
+  <data name="PasswordMaxChar" xml:space="preserve">
+    <value>Şifreniz 35 karakteri geçmemelidir.</value>
+  </data>
+  <data name="PasswordMinChar" xml:space="preserve">
+    <value>Şifreniz en az 6 karakter olmalıdır.</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Lütfen telefon numarasını giriniz.</value>
+  </data>
+  <data name="RestaurantDescription" xml:space="preserve">
+    <value>Lütfen açıklama girin.</value>
+  </data>
+  <data name="RestaurantName" xml:space="preserve">
+    <value>Lütfen restoran adını girin.</value>
+  </data>
+  <data name="RestaurantPhone" xml:space="preserve">
+    <value>Lütfen telefon numarasını giriniz.</value>
+  </data>
+  <data name="StartEndDate" xml:space="preserve">
+    <value>Bitiş tarihi, başlangıç ​​tarihinden sonra olmalıdır.</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>Lütfen soyadınızı giriniz.</value>
+  </data>
+  <data name="TableName" xml:space="preserve">
+    <value>Lütfen tablo adını girin.</value>
+  </data>
+  <data name="TableNo" xml:space="preserve">
+    <value>Lütfen tablo numarasını girin.</value>
+  </data>
+  <data name="TableNoFormat" xml:space="preserve">
+    <value>Tablo numarası sayılardan oluşmalıdır.</value>
+  </data>
+  <data name="UniqueEmail" xml:space="preserve">
+    <value>Önceden kaydedilmiş bir E-posta.</value>
+  </data>
+  <data name="UniqueUrl" xml:space="preserve">
+    <value>URL kullanılıyor. Farklı deneyin.</value>
+  </data>
+  <data name="UniqueUsername" xml:space="preserve">
+    <value>Kullanıcı adı kullanılıyor, farklı bir ad deneyin.</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Url başkası tarafından kullanılıyor. Farkı bir url girin.</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Lütfen kullanıcı adını girin.</value>
+  </data>
+  <data name="UsernameMaxLength" xml:space="preserve">
+    <value>Kullanıcı adı 40 karakteri geçmemelidir.</value>
+  </data>
+  <data name="ValidPassword" xml:space="preserve">
+    <value>Parolanız boşluk içeremez.</value>
+  </data>
+  <data name="ValidUsername" xml:space="preserve">
+    <value>Kullanıcı adı boşluk, özel karakterler içeremez.</value>
+  </data>
+</root>

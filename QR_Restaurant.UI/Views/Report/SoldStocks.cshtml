@@ -1,0 +1,82 @@
+﻿@model SoldStocksViewModel
+@{
+    ViewData["Title"] = "SoldStocks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/lib/DataTables/datatables.min.css" rel="stylesheet" />
+    <style>
+        td {
+            vertical-align: middle !important;
+        }
+
+        .date-text {
+            text-align: center;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script src="~/lib/DataTables/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnReports').toggleClass('btn-outline');
+
+            $('.dataTables-list').DataTable({
+                pageLength: 10,
+                autoWidth: false,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy' },
+                    { extend: 'csv' },
+                    { extend: 'excel', title: 'Excel List' },
+                    { extend: 'pdf', title: 'Pdf' },
+
+                    {
+                        extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ]
+
+            });
+        });       
+
+    </script>
+}
+
+<div class="row">
+    @await Component.InvokeAsync("RestaurantManagerMenu")
+
+    <div class="col-md-9">
+        <div class="ibox float-e-margins" id="fboxSf">
+            <div class="ibox-title text-center">
+                <h3 class="col-md-12">@SharedLocalizer.GetLocalizedValue("SoldStocks")</h3>
+
+            </div>
+            <div class="ibox-content ibox-br">
+                <form asp-action="SoldStocks" target="_blank">               
+                    <div class="form-group">
+                        <label class="form-col-form-label font-bold"> @SharedLocalizer.GetLocalizedValue("DateRange") </label>
+                            <span class="text-danger" asp-validation-for="EndDate"></span>
+                            <div class="input-group">
+                                <input type="date" class="form-control date-text" asp-for="StartDate" />
+                                <span class="input-group-addon">to</span>
+                                <input type="date" class="form-control date-text" asp-for="EndDate" />
+                            </div>
+                    </div>
+                    <button type="submit" class="btn btn-outline btn-primary btn-block">@SharedLocalizer.GetLocalizedValue("Delivery").ToString().ToUpper()</button>
+                </form>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

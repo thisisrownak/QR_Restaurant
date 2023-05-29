@@ -1,0 +1,185 @@
+﻿@model QrCodeViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#btnQrTables').toggleClass('btn-outline');
+            if ($('#hasError').val() == 'Y') {
+                document.getElementById('formAdd').style.display = 'block';
+            }
+            else {
+                document.getElementById('formAdd').style.display = 'none';
+            }
+        });
+
+        const openAddForm = () => {
+            $('#txtTableId').val(0);
+            $('#txtTableName').val('');
+            $('#txtTableNo').val('');
+            $('#txtIsActive').prop('checked', true);
+            document.getElementById('formAdd').style.display = 'block';
+            $('#formAdd').removeClass('fadeOutDown');
+            $('#formAdd').addClass('fadeInDown');
+        }
+
+        const closeForm = () => {
+            $('#formAdd').removeClass('fadeInDown').addClass('fadeOutDown');
+            setTimeout(function () { document.getElementById('formAdd').style.display = 'none'; }, 800);
+        }
+
+        const createLoad = () => {
+            $('#qrTableForm').children('.ibox-content').toggleClass('sk-loading');
+        }
+
+        const editTable = (id, tableName, tableNo, isActive) => {
+            document.getElementById('validatorName').innerText = '';
+            document.getElementById('validatorNo').innerText = '';
+            openAddForm();
+            $('#txtTableId').val(id);            
+            $('#txtTableName').val(tableName);
+            $('#txtOldTableNo').val(tableNo);
+            $('#txtTableNo').val(tableNo);
+            isActive == 'True' ? $('#txtIsActive').prop('checked', true) : $('#txtIsActive').prop('checked', false);
+            window.location.href = '#';
+        }
+
+        const printQrCode = (id) => {
+            window.open('/qrcode/PrintQrCodeTemplate/' + id, '_blank');
+        }
+
+        const createAllQrCodes = () => {
+            window.open('/qrcode/PrintQrCodeAllTables/', '_blank');
+        }
+
+    </script>
+
+}
+
+    <div class="row">
+
+        @await Component.InvokeAsync("RestaurantManagerMenu")
+
+        <div class="col-md-9">
+            <div class="ibox-content m-b-sm border-bottom">
+                <div class="p-xs">
+                    <div class="float-left m-r-md">
+                        <i class="fa fa-th-list text-qrRest mid-icon"></i>
+                    </div>
+                    <h2 class="text-qrRest-dark font-weight-bold">@SharedLocalizer.GetLocalizedValue("OrderTables")</h2>
+                    <a href="#" onclick="openAddForm()"><i class="fa fa-plus"></i>@SharedLocalizer.GetLocalizedValue("CreateQrTable") </a>
+                    <br />
+                    <br />
+                    <button onclick="createAllQrCodes()" class="btn btn-sm btn-outline btn-primary mx-auto">
+                        <i class="fa fa-file-pdf-o"></i><i class="fa fa-arrow-down text-white"></i>@SharedLocalizer.GetLocalizedValue("CreateQRCodePDFForAllTables") @*Create QR Code PDF For All Tables  Tüm Masalar İçin QR Code PDF Oluştur*@
+                    </button>
+
+                </div>
+            </div>
+
+            <div id="formAdd" class="row animated">
+                <div class="col-md-12">
+                    <div class="ibox float-e-margins" id="qrTableForm">
+                        <div class="ibox-content">
+                            <div class="sk-spinner sk-spinner-wave">
+                                <div class="sk-rect1"></div>
+                                <div class="sk-rect2"></div>
+                                <div class="sk-rect3"></div>
+                                <div class="sk-rect4"></div>
+                                <div class="sk-rect5"></div>
+                            </div>
+
+                            <form asp-action="CreateQrCodeOrderTable" asp-controller="Qrcode">
+                                <div class="row">
+                                    <div class="col-lg-12 control">
+                                        <label class="form-col-form-label" for="">@SharedLocalizer.GetLocalizedValue("CreateQrTable")</label>
+                                        <span onclick="closeForm()" class="float-right"> <i class="fa fa-close"></i></span>
+                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:80%"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <input hidden asp-for="HasError" value="@Model.HasError" id="hasError" />
+                                <input hidden asp-for="RestaurantId" />
+                                <input hidden asp-for="Id" id="txtTableId" />
+
+                                <div class="row">
+                                    <input asp-for="OldTableNo" id="txtOldTableNo" hidden class="form-control">
+                                    <div class="form-group form-material col-xl-6">
+                                        <label class="form-col-form-label">
+                                            @SharedLocalizer.GetLocalizedValue("TableName")* <span asp-validation-for="Name" id="validatorName" class="text-danger"></span>
+                                        </label>
+                                        <input asp-for="Name" id="txtTableName" type="text" placeholder="Manchaster, Blue table ..." class="form-control">
+                                    </div>
+                                    <div class="form-group form-material col-xl-6">
+                                        <label class="form-col-form-label">
+                                            @SharedLocalizer.GetLocalizedValue("TableNo")* <span asp-validation-for="TableNo" id="validatorNo" class="text-danger"></span>
+                                        </label>
+                                        <input asp-for="TableNo" id="txtTableNo" type="text" placeholder="1, 2, 3 ..." class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group form-material col-xl-6">
+                                        <label class="form-col-form-label">
+                                            @SharedLocalizer.GetLocalizedValue("Active") : <span asp-validation-for="IsActive" class="text-danger"></span>
+                                        </label>
+                                        <br />
+                                        <input asp-for="IsActive" id="txtIsActive" type="checkbox">
+                                    </div>
+                                </div>
+
+                                <br>
+                                <div class="row">
+                                    <div class="container">
+                                        <button onclick="createLoad()" class="btn btn-outline btn-primary btn-block"> @SharedLocalizer.GetLocalizedValue("Save")</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+            @foreach (var item in Model.QrOrderTables)
+            {
+                <div class="col-md-3">
+                    <div class="ibox">
+                        <div class="ibox-content product-box">
+                            <div class="product-imitation" style="background-image: url('/images/qrCodes/@item.QrCodeUrl'); background-size: cover;">
+                            </div>
+                            <div class="product-desc">
+                                <div onclick="editTable('@item.Id', '@item.Name', '@item.TableNo', '@item.IsActive')" class="menu-button"><i class="fa fa-pencil" style="margin-top:5px"></i></div>
+                                <a class="product-name">@SharedLocalizer.GetLocalizedValue("TableNo") : @item.TableNo</a>
+                                <div class="small m-t-xs">
+                                    @SharedLocalizer.GetLocalizedValue("TableName") : @item.Name
+                                </div>
+                                @if (item.IsActive)
+                                {
+                                    <span class='badge badge-primary'>@SharedLocalizer.GetLocalizedValue("Active")</span>
+                                }
+                                else
+                                {
+                                    <span class='badge badge-danger'>@SharedLocalizer.GetLocalizedValue("Passive")</span>
+                                }
+                                <hr />
+                                <div class="m-t mx-auto">
+                                    <div class="row">
+                                        <button onclick="printQrCode('@item.Id')" class="btn btn-sm btn-outline btn-primary mx-auto">
+                                            @SharedLocalizer.GetLocalizedValue("DownloadQrImage")
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>ऑपरेशन</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>सक्रिय</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>जोड़ना</value>
+  </data>
+  <data name="AddOrderSuccessMessage" xml:space="preserve">
+    <value>आपका आदेश भेज दिया गया है</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>पता</value>
+  </data>
+  <data name="AddToCartMessage" xml:space="preserve">
+    <value>इस उत्पाद को आपके कार्ट में शामिल कर दिया गया है।</value>
+  </data>
+  <data name="AddWaiterWarning" xml:space="preserve">
+    <value>आपको ऑर्डर पूरा करने के लिए एक वेटर जोड़ना होगा।</value>
+  </data>
+  <data name="Allregisteredrestaurants" xml:space="preserve">
+    <value>पंजीकृत रेस्तरां</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>तैयार कर रहे हैं</value>
+  </data>
+  <data name="Arabic" xml:space="preserve">
+    <value>अरबी</value>
+  </data>
+  <data name="Block" xml:space="preserve">
+    <value>मोड़</value>
+  </data>
+  <data name="BlockRestaurant" xml:space="preserve">
+    <value>क्या आप वाकई रेस्तरां को निष्क्रिय करना चाहते हैं?</value>
+  </data>
+  <data name="CallBillMessage" xml:space="preserve">
+    <value>खाता आवश्यक है</value>
+  </data>
+  <data name="CallSuccess" xml:space="preserve">
+    <value>हम यथाशीघ्र आ रहे हैं</value>
+  </data>
+  <data name="CallWaiter" xml:space="preserve">
+    <value>वेटर को बुलाओ</value>
+  </data>
+  <data name="CallWaiterMessage" xml:space="preserve">
+    <value>वेटर को बुलाया गया है।</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>रद्द करना</value>
+  </data>
+  <data name="CancelQuestion" xml:space="preserve">
+    <value>पक्का आप रद्द करना चाहते हैं?</value>
+  </data>
+  <data name="Cart" xml:space="preserve">
+    <value>मेरा आदेश कार्ट</value>
+  </data>
+  <data name="CategoryName" xml:space="preserve">
+    <value>श्रेणी नाम</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>पासवर्ड बदलें</value>
+  </data>
+  <data name="Chinese" xml:space="preserve">
+    <value>चीनी</value>
+  </data>
+  <data name="Clock" xml:space="preserve">
+    <value>घड़ी</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>बंद करे</value>
+  </data>
+  <data name="ClosedTableNotification" xml:space="preserve">
+    <value>मेज खाली है</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>पूर्ण</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>पूरा हुआ</value>
+  </data>
+  <data name="CompletedOrdersToday" xml:space="preserve">
+    <value>आज पूरा हुआ आदेश</value>
+  </data>
+  <data name="CreateMenu" xml:space="preserve">
+    <value>निर्माण मेनू</value>
+  </data>
+  <data name="CreateMenuCategory" xml:space="preserve">
+    <value>सृजन मेनू श्रेणी</value>
+  </data>
+  <data name="CreateQRCodePDFForAllTables" xml:space="preserve">
+    <value>सभी तालिकाओं के लिए QR कोड पीडीएफ बनाएं</value>
+  </data>
+  <data name="CreateQrTable" xml:space="preserve">
+    <value>क्यूआर कोड के साथ नई तालिका बनाएं</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>₹</value>
+  </data>
+  <data name="CurrencyDescription" xml:space="preserve">
+    <value>यदि आप मुद्रा नहीं भरते हैं, तो यह भाषा चयन के अनुसार प्रदर्शित होगी।</value>
+  </data>
+  <data name="CurrencyUnit" xml:space="preserve">
+    <value>मुद्रा इकाई</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>तिथि सीमा</value>
+  </data>
+  <data name="DeleteQuestion" xml:space="preserve">
+    <value>क्या आप आश्वस्त है कि आपको डिलीट करना है?</value>
+  </data>
+  <data name="Delivery" xml:space="preserve">
+    <value>वितरण</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>विवरण</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>विस्तार</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>पूर्ण</value>
+  </data>
+  <data name="DownloadQrImage" xml:space="preserve">
+    <value>Qr छवि डाउनलोड करें</value>
+  </data>
+  <data name="DragOrder" xml:space="preserve">
+    <value>सूची के बीच आदेश खींचें, सूचियों के बीच आदेश खींचें</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>संपादन करना</value>
+  </data>
+  <data name="EmptyCartMessage" xml:space="preserve">
+    <value>आपकी गाड़ी अभी तक खाली है।</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>समाप्ति तिथि</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>अंग्रेज़ी</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>त्रुटि</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>क्षमा करें, हम वह नहीं कर सकते जो आप अभी चाहते हैं।</value>
+  </data>
+  <data name="FillField" xml:space="preserve">
+    <value>कृपया फ़ील्ड भरें।</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>फ्रेंच</value>
+  </data>
+  <data name="German" xml:space="preserve">
+    <value>जर्मन</value>
+  </data>
+  <data name="GetPaid" xml:space="preserve">
+    <value>भुगतान प्राप्त करना</value>
+  </data>
+  <data name="GetPaidQuestion" xml:space="preserve">
+    <value>सभी आदेशों को पूरा और भुगतान के रूप में सहेजा जाएगा। क्या आप भुगतान को मंजूरी देते हैं?</value>
+  </data>
+  <data name="Hindi" xml:space="preserve">
+    <value>हिंदी</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>मुख पृष्ठ</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>छवि</value>
+  </data>
+  <data name="InProgress" xml:space="preserve">
+    <value>तैयार कर रहे हैं</value>
+  </data>
+  <data name="InvalidKanbanUpdate" xml:space="preserve">
+    <value>भुगतान आदेश की स्थिति को बदला नहीं जा सकता। पृष्ठ ताज़ा करें।</value>
+  </data>
+  <data name="Japanese" xml:space="preserve">
+    <value>जापानी</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>जुबान</value>
+  </data>
+  <data name="LockAccountMessage" xml:space="preserve">
+    <value>आपका खाता जमा दिया गया है। आपको संपर्क करके अपना खाता खोलने की आवश्यकता है।</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>बंद</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>लॉग इन करें</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>लॉग आउट</value>
+  </data>
+  <data name="ManagementPanel" xml:space="preserve">
+    <value>प्रबंधन पैनल</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>प्रबंधक</value>
+  </data>
+  <data name="ManagerEmail" xml:space="preserve">
+    <value>अधिकृत ईमेल</value>
+  </data>
+  <data name="ManagerName" xml:space="preserve">
+    <value>अधिकृत नाम</value>
+  </data>
+  <data name="ManagerPhone" xml:space="preserve">
+    <value>अधिकृत फोन</value>
+  </data>
+  <data name="ManagerSurname" xml:space="preserve">
+    <value>अधिकृत उपनाम</value>
+  </data>
+  <data name="ManagerUsername" xml:space="preserve">
+    <value>अधिकृत उपयोगकर्ता नाम</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>मेन्यू</value>
+  </data>
+  <data name="MenuCategories" xml:space="preserve">
+    <value>मेनू श्रेणियाँ</value>
+  </data>
+  <data name="MenuList" xml:space="preserve">
+    <value>मेनू सूची</value>
+  </data>
+  <data name="MenuOptions" xml:space="preserve">
+    <value>व्यंजना सूची</value>
+  </data>
+  <data name="MostPreferred" xml:space="preserve">
+    <value>सबसे पसंदीदा</value>
+  </data>
+  <data name="MultiChoice" xml:space="preserve">
+    <value>एकाधिक चयन</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>नाम</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>नया</value>
+  </data>
+  <data name="NewOrderMessage" xml:space="preserve">
+    <value>आपके पास एक नया आदेश है!</value>
+  </data>
+  <data name="NewOrderTableNotification" xml:space="preserve">
+    <value>एक नया आदेश है</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>नया पासवर्ड</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>नहीं</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>आपका डेटा उपलब्ध नहीं है।</value>
+  </data>
+  <data name="NoDataDesc" xml:space="preserve">
+    <value>जब आपके पास डेटा होगा, तो आप इसे यहाँ देख सकते हैं।</value>
+  </data>
+  <data name="NoOrderMessage" xml:space="preserve">
+    <value>आपके पास कोई नया आदेश नहीं है।</value>
+  </data>
+  <data name="NoTableMessage" xml:space="preserve">
+    <value>आपको रेस्तरां के लिए एक टेबल जोड़ना होगा।</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>नहीं</value>
+  </data>
+  <data name="NotePlaceholder" xml:space="preserve">
+    <value>यदि आपके पास आदेश के लिए नोट है तो संकेत दें</value>
+  </data>
+  <data name="OnRequest" xml:space="preserve">
+    <value>अनुरोध पर</value>
+  </data>
+  <data name="OpenTableNotification" xml:space="preserve">
+    <value>ग्राहक हैं</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>विकल्प</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>गण</value>
+  </data>
+  <data name="OrderBoard" xml:space="preserve">
+    <value>आदेश बोर्ड</value>
+  </data>
+  <data name="OrderButton" xml:space="preserve">
+    <value>आदेश देना</value>
+  </data>
+  <data name="OrderHistory" xml:space="preserve">
+    <value>आदेश इतिहास</value>
+  </data>
+  <data name="OrderList" xml:space="preserve">
+    <value>आदेश (सूची)</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>आदेश</value>
+  </data>
+  <data name="OrderTables" xml:space="preserve">
+    <value>आदेश सारणी</value>
+  </data>
+  <data name="Passive" xml:space="preserve">
+    <value>निष्क्रिय</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>कुंजिका</value>
+  </data>
+  <data name="PasswordAgain" xml:space="preserve">
+    <value>पासवर्ड दोहराएँ</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>भुगतान</value>
+  </data>
+  <data name="PaymentSuccessMessage" xml:space="preserve">
+    <value>सभी आदेशों को पूरा और भुगतान के रूप में दर्ज किया गया है। आप साइड टैब से भुगतान दस्तावेज़ प्राप्त कर सकते हैं।</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>TELEPHONE</value>
+  </data>
+  <data name="Piece" xml:space="preserve">
+    <value>टुकड़ा</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>कृपया चयन कीजिए</value>
+  </data>
+  <data name="Polish" xml:space="preserve">
+    <value>पोलिश</value>
+  </data>
+  <data name="Portuguse" xml:space="preserve">
+    <value>पुर्तगाली</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>कीमत</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>एकांत</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>उत्पाद</value>
+  </data>
+  <data name="ProductFeatureItems" xml:space="preserve">
+    <value>मेनू सुविधा विकल्प</value>
+  </data>
+  <data name="ProductFeatures" xml:space="preserve">
+    <value>मेनू सुविधाएँ</value>
+  </data>
+  <data name="ProductNotAvailable" xml:space="preserve">
+    <value>यह उत्पाद फिलहाल उपलब्ध नहीं है।</value>
+  </data>
+  <data name="QrCodeTables" xml:space="preserve">
+    <value>क्यूआर कोड TABLES</value>
+  </data>
+  <data name="RegisterForm" xml:space="preserve">
+    <value>पंजीकरण फॉर्म</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>अस्वीकृत</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>मुझे याद रखें</value>
+  </data>
+  <data name="RemoveToCartMessage" xml:space="preserve">
+    <value>उत्पाद को कार्ट से निकाल दिया गया है।</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>रिपोर्ट</value>
+  </data>
+  <data name="RequestPayment" xml:space="preserve">
+    <value>भुगतान का अनुरोध करें</value>
+  </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>खाने की दुकान</value>
+  </data>
+  <data name="RestaurantDescription" xml:space="preserve">
+    <value>रेस्तरां विवरण</value>
+  </data>
+  <data name="RestaurantDetails" xml:space="preserve">
+    <value>रेस्तरां विवरण</value>
+  </data>
+  <data name="RestaurantManagerAccountDetails" xml:space="preserve">
+    <value>रेस्तरां कार्यकारी खाता विवरण</value>
+  </data>
+  <data name="RestaurantName" xml:space="preserve">
+    <value>रेस्तरां का नाम</value>
+  </data>
+  <data name="RestaurantRegistration" xml:space="preserve">
+    <value>रेस्तरां पंजीकरण</value>
+  </data>
+  <data name="Restaurants" xml:space="preserve">
+    <value>रेस्टोरेंट</value>
+  </data>
+  <data name="RestaurantSettings" xml:space="preserve">
+    <value>रेस्टॉरेंट सेटिंग्स</value>
+  </data>
+  <data name="RestaurantStaff" xml:space="preserve">
+    <value>रेस्तरां कर्मचारी</value>
+  </data>
+  <data name="RestaurantUrl" xml:space="preserve">
+    <value>रेस्तरां Url</value>
+  </data>
+  <data name="RowNumber" xml:space="preserve">
+    <value>पंक्ति नंबर</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+    <value>रूसी</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>सहेजें</value>
+  </data>
+  <data name="SelectImage" xml:space="preserve">
+    <value>छवि चुने</value>
+  </data>
+  <data name="SelectOptions" xml:space="preserve">
+    <value>कृपया अपने चयन पूर्ण करें।</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>समायोजन</value>
+  </data>
+  <data name="SiteSettings" xml:space="preserve">
+    <value>साइट सेटिंग्स</value>
+  </data>
+  <data name="SoldStocks" xml:space="preserve">
+    <value>शेयर बेच दिया</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>स्पेनिश</value>
+  </data>
+  <data name="StaffManagement" xml:space="preserve">
+    <value>कर्मचारी प्रबंधन</value>
+  </data>
+  <data name="Staffs" xml:space="preserve">
+    <value>कर्मचारी</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>आरंभ करने की तिथि</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>स्थिति</value>
+  </data>
+  <data name="SuccessProcess" xml:space="preserve">
+    <value>आपका लेनदेन सफलतापूर्वक पूरा हो गया है।</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>उपनाम</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>तालिका</value>
+  </data>
+  <data name="TableName" xml:space="preserve">
+    <value>तालिका नाम</value>
+  </data>
+  <data name="TableNameShowInQr" xml:space="preserve">
+    <value>तालिका का नाम Qr कोड pdf में दिखाई देता है।</value>
+  </data>
+  <data name="TableNo" xml:space="preserve">
+    <value>तालिका सं</value>
+  </data>
+  <data name="TableNoShowInQr" xml:space="preserve">
+    <value>Qr कोड पीडीऍफ़ में टेबल नंबर दिखने दें।</value>
+  </data>
+  <data name="Tables" xml:space="preserve">
+    <value>टेबल्स</value>
+  </data>
+  <data name="TemporaryPassword" xml:space="preserve">
+    <value>अस्थायी पासवर्ड</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>संपूर्ण</value>
+  </data>
+  <data name="Turkish" xml:space="preserve">
+    <value>तुर्की</value>
+  </data>
+  <data name="Unblock" xml:space="preserve">
+    <value>सक्रिय</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>यूनिट मूल्य</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>उपयोगकर्ता नाम</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>संस्करण</value>
+  </data>
+  <data name="Waiter" xml:space="preserve">
+    <value>वेटर</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>स्वागत हे</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>हाँ</value>
+  </data>
+  <data name="İtalian" xml:space="preserve">
+    <value>इतालवी</value>
+  </data>
+</root>

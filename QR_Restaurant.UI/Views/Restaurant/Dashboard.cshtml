@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+<div class="container-fluid">
+    @await Component.InvokeAsync("ControlBoardCards");
+    @await Component.InvokeAsync("OrderList");
+    <div class="row">
+        <div class="col-lg-4">
+            @await Component.InvokeAsync("ControlBoardItemCard");
+        </div>
+        <div class="col-lg-4">
+            @await Component.InvokeAsync("ControlBoardReviewCard");
+        </div>
+        <div class="col-lg-4">
+            @await Component.InvokeAsync("ControlBoardSummeryCard");
+        </div>
+
+    </div>
+
+</div><!-- container -->

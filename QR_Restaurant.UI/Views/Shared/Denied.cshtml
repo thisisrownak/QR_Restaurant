@@ -1,0 +1,11 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="middle-box text-center animated fadeInDown">
+    <h1>@SharedLocalizer.GetLocalizedValue("Denied")</h1>
+    <h3 class="font-bold text-center"> @SharedLocalizer.GetLocalizedValue("ErrorMessage") </h3>
+</div>@if (Model != null && !String.IsNullOrEmpty(Model.RequestId))
+{
+    <p class="text-center text-white">@Model.RequestId</p>}

@@ -1,0 +1,301 @@
+﻿@model IEnumerable<QR_Restaurant.Data.Entities.Restaurant>
+@{
+    ViewData["Title"] = "Restaurant";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Scripts {
+   
+    <script>
+        $(document).ready(function () {
+            $('#menuRestaurants').toggleClass('active');
+            $('.dataTables-list').DataTable({
+                pageLength: 10,
+                autoWidth: false,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy' },
+                    { extend: 'csv' },
+                    { extend: 'excel', title: 'Excel List' },
+                    { extend: 'pdf', title: 'Pdf' },
+
+                    {
+                        extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ]
+            });
+        });
+
+        var selectedId = 0;
+
+        openPassiveModal = (id) => {
+            selectedId = id;
+            $('#delete-modal').modal();
+        }
+
+        passiveRestaurant = () => {           
+            $('#delete-modal').modal();
+        }
+
+        const unblockRestaurant = () => {
+            location.href = "/admin/restaurant/activated/" + selectedId;
+        }
+
+        blockRestaurant = () => {
+            location.href = "/admin/restaurant/Passive/" + selectedId;
+        };
+
+        const getRestaurantDetail = (id, name, desc, active, phone, address) => {
+            if (active != "False") {
+                document.getElementById('actionBlock').style.display = "block";
+                document.getElementById('actionUnblock').style.display = "none";
+            } else {
+                document.getElementById('actionBlock').style.display = "none";
+                document.getElementById('actionUnblock').style.display = "block";
+            }
+            document.getElementById('txtRestaurantName').innerText = "";
+            document.getElementById('txtDescription').innerHTML = "";
+            document.getElementById('txtActivation').innerHTML = "";
+            document.getElementById('txtPhone').innerHTML = "";
+            document.getElementById('txtAddress').innerHTML = "";
+            selectedId = id;
+            $.ajax({
+                type: "get",
+                url: "/Admin/restaurant/GetRestaurantStaffs?restaurantId="+ parseInt(id),
+                success: function (data) {
+                    if (data !== "404") {
+                        document.getElementById('txtRestaurantName').innerText = name;
+                        document.getElementById('txtDescription').innerHTML = desc;
+                        document.getElementById('txtActivation').innerHTML = active != "False" ? "<span class='badge badge-primary'>Active</span>" : "<span class='badge badge-danger'>Passive</span>";
+                        document.getElementById('txtPhone').innerHTML = phone;
+                        document.getElementById('txtAddress').innerHTML = address;
+                        let staffHtml = "";
+                        for (var i = 0; i < data.length; i++) {
+                            staffHtml += `<tr><td><b>${data[i].role} :</b></td><td>${data[i].fullName} (${data[i].userName})</td></tr>`;
+                        }
+                        document.getElementById('htmlStaffs').innerHTML = staffHtml;
+                        $('#restaurantDetail').modal();
+                    } else {
+                        alert("Restaurant not found.");
+                    }
+                },
+                error: function (error) {
+                    alert('Check your internet connection.');
+                }
+            });
+        }
+     
+    </script>
+}
+
+
+<div class="ibox float-e-margins" id="fboxSf">
+    <div class="ibox-title text-center">
+        <h3 class="col-md-12"> @SharedLocalizer.GetLocalizedValue("Restaurants").ToString().ToUpper()</h3>
+        <span class="text-muted"> @SharedLocalizer.GetLocalizedValue("Allregisteredrestaurants") </span>
+    </div>
+    <div class="ibox-content">
+        <br />
+        @if (Model == null)
+        {
+            <div class="col-md-12">
+                <div class="contact-box">
+                    <div class="col-sm-12">
+                        <h3><strong>  @SharedLocalizer.GetLocalizedValue("NoData") </strong></h3>
+                        <p>
+                            @SharedLocalizer.GetLocalizedValue("NoDataDesc") 
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        }
+        else
+        {            
+            <div class="table-responsive textingad">
+                <table class="table table-hover dataTables-list">
+                    <thead>
+                        <tr>
+                            <th>
+                                <i class="fa fa-smile-o" style="margin-left:35%;"></i>
+                            </th>
+                            <th>
+                                @SharedLocalizer.GetLocalizedValue("Name") 
+                            </th>
+                            <th>
+                                @SharedLocalizer.GetLocalizedValue("Description") 
+                            </th>
+                            <th>
+                                @SharedLocalizer.GetLocalizedValue("ManagerUser") 
+                            </th>
+                            <th>
+                                @SharedLocalizer.GetLocalizedValue("Active")  
+                            </th>
+                            <th>
+                                @SharedLocalizer.GetLocalizedValue("Detail")  
+                            </th>
+                            <th class="pull-right">@SharedLocalizer.GetLocalizedValue("Action")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <div class="col-md-12">
+                                    <img src="~/images/48User.png" class="rounded-circle img-md">
+                                </div>
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                @Html.DisplayFor(modelItem => item.ManagerUser)
+                            </td>
+
+                            <td style="text-align: center; vertical-align: middle;">
+                                @if (item.IsActive)
+                                {
+                                <span class='badge badge-primary'>@SharedLocalizer.GetLocalizedValue("Active")</span>
+                                }
+                                else
+                                {
+                            <span class='badge badge-danger'>@SharedLocalizer.GetLocalizedValue("Passive")</span>
+                                }
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <button onclick="getRestaurantDetail('@item.Id', '@item.Name', '@item.Description', '@item.IsActive', '@item.Phone', '@item.Address')" class="btn btn-primary btn-outline btn-sm">@SharedLocalizer.GetLocalizedValue("Detail")</button>
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                @if (item.IsActive)
+                                {
+                                <a href="#" onclick="openPassiveModal('@item.Id');">@SharedLocalizer.GetLocalizedValue("Block")</a>
+                                }
+                                else
+                                {
+                            <a href="/admin/restaurant/activated/@item.Id">@SharedLocalizer.GetLocalizedValue("Unblock")</a>
+                                }
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+    </div>
+</div>
+
+<div class="modal inmodal" id="restaurantDetail" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated fadeIn">
+            <div class="modal-header">
+                <h4 class="modal-title mx-auto">@SharedLocalizer.GetLocalizedValue("RestaurantDetails")</h4>
+               
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="ibox no-margins" id="boxBA">
+                    <div class="first ibox-content" style="border-top:none;">
+                        <div class="sk-spinner sk-spinner-wave">
+                            <div class="sk-rect1"></div>
+                            <div class="sk-rect2"></div>
+                            <div class="sk-rect3"></div>
+                            <div class="sk-rect4"></div>
+                            <div class="sk-rect5"></div>
+                        </div>
+                        <div class="text-center">
+                            <strong>@SharedLocalizer.GetLocalizedValue("Detail")</strong>
+                        </div>
+                        <br />
+                        <table class="table table-hover">
+                            <tr>
+                                <td>
+                                    <b>@SharedLocalizer.GetLocalizedValue("RestaurantName") :</b>
+                                </td>
+                                <td id="txtRestaurantName"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>@SharedLocalizer.GetLocalizedValue("RestaurantDescription") :</b>
+                                </td>
+                                <td id="txtDescription"></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <b> @SharedLocalizer.GetLocalizedValue("Status") :</b>
+                                </td>
+                                <td id="txtActivation"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b> @SharedLocalizer.GetLocalizedValue("Phone") :</b>
+                                </td>
+                                <td id="txtPhone"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b> @SharedLocalizer.GetLocalizedValue("Address") :</b>
+                                </td>
+                                <td id="txtAddress"></td>
+                            </tr>
+                        </table>
+                        <hr />
+                        <div class="text-center">
+                            <strong>@SharedLocalizer.GetLocalizedValue("Staffs")</strong>
+                        </div>
+                            <br />
+                            <table class="table table-hover" id="htmlStaffs">
+                                                           
+                            </table>                       
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a id="actionUnblock" onclick="unblockRestaurant()" class="btn btn-info btn-outline btn-sm">@SharedLocalizer.GetLocalizedValue("Unblock")</a>
+                <a id="actionBlock" class="btn btn-danger btn-outline btn-sm" onclick="passiveRestaurant()">@SharedLocalizer.GetLocalizedValue("Block")</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="delete-modal" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated fadeIn">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <p class="p-y m-t text-center">
+                        <i class="fa fa-remove text-warning fa-5x"></i>
+                        <button type="button" class="close mr-3" data-dismiss="modal">
+                            <span aria-hidden="true">&#xD7;</span><span class="sr-only">@SharedLocalizer.GetLocalizedValue("Close")</span>
+                        </button>
+                    </p>                  
+                   <div class="modal-header"></div>
+                    <div class="modal-body">
+                        <p class="text-center">@SharedLocalizer.GetLocalizedValue("BlockRestaurant")</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">@SharedLocalizer.GetLocalizedValue("No")</button> <button onclick="blockRestaurant()" class="btn btn-primary text-white">@SharedLocalizer.GetLocalizedValue("Yes")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

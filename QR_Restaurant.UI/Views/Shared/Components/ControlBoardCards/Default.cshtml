@@ -1,0 +1,158 @@
+﻿@model ControlBoardCountViewModel
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body mb-0">
+                <div class="row">
+                    <div class="col-8 align-self-center">
+                        <div class="">
+                            <h4 class="mt-0 header-title">احصائيات مسح المنيو</h4>
+                            <h2 class="mt-0 font-weight-bold text-dark">@Model.MenuScanCount</h2>
+                            <p class="mb-0 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>@Model.MenuScanGrouth%</span> عن الاسبوع الماضي</p>
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-4 align-self-center">
+                        <div class="icon-info text-right">
+                            <i class="dripicons-cart bg-soft-warning"></i>
+                        </div>
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div><!--end card-body-->
+            <div class="card-body overflow-hidden p-0">
+                <div class="d-flex mb-0 h-100 dash-info-box">
+                    <div class="w-100">
+                        <div class="apexchart-wrapper">
+                            <div id="dash_spark_1" class="chart-gutters"></div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div><!--end col-->
+
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body mb-0">
+                <div class="row">
+                    <div class="col-8 align-self-center">
+                        <div class="">
+                            <h4 class="mt-0 header-title">اجمالى الاوردرات</h4>
+                            <h2 class="mt-0 font-weight-bold text-dark"> @Model.TotalOrderCount أوردر</h2>
+                            <p class="mb-0 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>@Model.TotalOrderGrouthCount%</span> عن الاسبوع الماضي</p>
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-4 align-self-center">
+                        <div class="icon-info text-right">
+                            <i class="dripicons-wallet bg-soft-success"></i>
+                        </div>
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div><!--end card-body-->
+            <div class="card-body overflow-hidden p-0">
+                <div class="d-flex mb-0 h-100 dash-info-box">
+                    <div class="w-100">
+                        <div class="apexchart-wrapper">
+                            <div id="apex_column1" class="chart-gutters"></div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div><!--end col-->
+
+    <div class="col-lg-4">
+        <div class="card carousel-bg-img">
+            <div class="card-body dash-info-carousel mb-0">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-12 align-self-center">
+                                    <div class="text-center">
+                                        <h4 class="mt-0 header-title text-left">حساب اجمالى الاوردرات</h4>
+                                        <div class="icon-info my-3">
+                                            <i class="dripicons-jewel bg-soft-pink"></i>
+                                        </div>
+                                        <h2 class="mt-0 font-weight-bold text-dark">@Model.TotalOrderAmount جنية</h2>
+                                        <p class="mb-1 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>@Model.TotalOrderGrouthAmount%</span> ارتفاع ف الدخل</p>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </div><!--end carousel-item-->
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-12 align-self-center">
+                                    <div class="text-center">
+                                        <h4 class="mt-0 header-title text-left">اوردرات</h4>
+                                        <div class="icon-info my-3">
+                                            <i class="dripicons-basket bg-soft-info"></i>
+                                        </div>
+                                        <h2 class="mt-0 font-weight-bold text-dark">@Model.TotalOrderCount</h2>
+                                        <p class="mb-1 text-muted"><span class="text-danger"><i class="mdi mdi-arrow-down"></i>@Model.TotalOrderGrouthCount%</span> ارتفاع فى الطلبات</p>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </div><!--end carousel-item-->
+
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-12 align-self-center">
+                                    <div class="text-center">
+                                        <h4 class="mt-0 header-title text-left">اقسام الاصناف</h4>
+                                        <div class="icon-info my-3">
+                                            <i class="dripicons-swap bg-soft-primary"></i>
+                                        </div>
+                                        <h2 class="mt-0 font-weight-bold text-dark">@Model.ItemSectionsCount%</h2>
+                                        <p class="mb-1 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>@Model.ItemSectionGrouth%</span> زيادة فى الاصناف</p>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </div><!--end carousel-item-->
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-12 align-self-center">
+                                    <div class="text-center">
+                                        <h4 class="mt-0 header-title text-left">عدد الاصناف</h4>
+                                        <div class="icon-info my-3">
+                                            <i class="dripicons-store bg-soft-warning"></i>
+                                        </div>
+                                        <h2 class="mt-0 font-weight-bold text-dark">@Model.ItemsCount</h2>
+                                        <p class="mb-1 text-muted">جميع الاصناف مفعلة</p>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </div><!--end carousel-item-->
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-12 align-self-center">
+                                    <div class="text-center">
+                                        <h4 class="mt-0 header-title text-left">مرات مسح المنيو</h4>
+                                        <div class="icon-info my-3">
+                                            <i class="dripicons-user-group bg-soft-success"></i>
+                                        </div>
+                                        <h2 class="mt-0 font-weight-bold text-dark">@Model.MenuScanCount</h2>
+                                        <p class="mb-1 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>@Model.MenuScanGrouth%</span> زيادة فى عدد المسحات</p>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </div><!--end carousel-item-->
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">السابق</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">التالي</span>
+                    </a>
+                </div>
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div><!--end col-->
+</div><!--end row-->
+<script>
+    const getLink = (param) => {
+        
+    }
+</script>
+

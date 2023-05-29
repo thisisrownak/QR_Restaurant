@@ -1,0 +1,410 @@
+﻿@model RestaurantMenuViewModel
+@{
+    ViewData["Title"] = "Menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <style>
+        td {
+            vertical-align: middle !important;
+        }
+
+        .spacer {
+            height: 70px;
+        }
+    </style>
+    <link href="/css/orderMenu.css" rel="stylesheet">
+}
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="ibox float-e-margins" id="fboxSf">
+                <div class="ibox-title">
+                    <h3 class="col-md-12">@SharedLocalizer.GetLocalizedValue("Cart") <i class="fa fa-cart-arrow-down float-right"></i></h3>
+                    <input hidden value="@(String.IsNullOrEmpty(Model.Restaurant.CurrencySymbol) ? SharedLocalizer.GetLocalizedValue("Currency") : Model.Restaurant.CurrencySymbol)" id="txtCurrency" />
+                    <input hidden value="@SharedLocalizer.GetLocalizedValue("Total")" id="txtTotal" />
+                    <input hidden value="@SharedLocalizer.GetLocalizedValue("EmptyCartMessage")" id="txtEmptyCart" />
+                    <input hidden value="@SharedLocalizer.GetLocalizedValue("SelectOptions")" id="txtSelectOptions" />
+                </div>
+                <div class="ibox-content ibox-br">
+                    <div class="sk-spinner sk-spinner-wave">
+                        <div class="sk-rect1"></div>
+                        <div class="sk-rect2"></div>
+                        <div class="sk-rect3"></div>
+                        <div class="sk-rect4"></div>
+                        <div class="sk-rect5"></div>
+                    </div>
+                    <form asp-action="AddOrder" asp-controller="Order" method="post">
+                        <input name="RestaurantId" id="txtRestaurantId" hidden value="@Model.Restaurant.Id" />
+                        <input name="UserId" id="txtUserId" hidden value="@Context.Request.Query["userId"]" />
+                        <input name="TableId" id="txtTableId" hidden value="@Model.TableId" />
+
+                        <table class="table table-borderless">
+                            <tbody id="cartContentsHtml">
+                            </tbody>
+                        </table>
+                        <hr>
+                        <div class="form-group" id="txtOrderIsReady">
+                            <textarea class="form-control" name="OrderNote" maxlength="70" rows="2" placeholder="@SharedLocalizer.GetLocalizedValue("NotePlaceholder")"></textarea>
+                        </div>
+                        <button type="submit" onclick="startOrder()" id="placeOrder" class="btn btn-primary btn-outline btn-block mt-4 btn-sm"> @SharedLocalizer.GetLocalizedValue("OrderButton")</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6" style="padding-right:7px">
+                    <button onclick="callTheWaiter()" id="btnCallWaiter" class="call-button btn-block"><img src="/images/call-waiter.png" /> @SharedLocalizer.GetLocalizedValue("CallWaiter")</button>
+                </div>
+                <div class="col-6"  style="padding-left:7px">
+                    <button onclick="callPayment()" id="btnCallBill" class="call-button btn-block"><img src="/images/get-money.png" /> @SharedLocalizer.GetLocalizedValue("RequestPayment")</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-8">
+            <div class="ibox-content m-b-sm border-bottom" id="welcome-lg">
+                <div class="p-xs">
+                    <div class="float-left m-r-md">
+                        <img alt="image" class="img-md" src="~/images/logos/@Model.Restaurant.LogoUrl">
+                    </div>
+                    <div class="float-right m-r-md">
+                        <button onclick="changeView(1)" class="btn btn-primary btn-outline btn-flat btn-sm"><i class="fa fa-list-ul mt-1"></i></button>
+                        <button onclick="changeView(0)" class="btn btn-primary btn-outline btn-flat btn-sm"><i class="fa  fa-th-large mt-1"></i></button>
+                    </div>
+                    <h2 class="text-qrRest-dark font-weight-bold text-styling"> @SharedLocalizer.GetLocalizedValue("Welcome").ToString().ToLower() @Model.Restaurant.Name</h2>
+                    <span>@Model.Restaurant.Description</span>
+                </div>
+            </div>
+
+            <div class="ibox-content m-b-sm border-bottom" id="welcome-sm">
+                <div class="p-xs text-center">
+                    <div class="m-r-md">
+                        <img alt="image" class="img-md" src="~/images/logos/@Model.Restaurant.LogoUrl">
+                    </div>
+
+                    <h2 class="text-qrRest-dark font-weight-bold text-styling"> @SharedLocalizer.GetLocalizedValue("Welcome").ToString().ToLower() @Model.Restaurant.Name</h2>
+                    <span>@Model.Restaurant.Description</span>
+                    <div class="mt-4">
+                        <button onclick="changeView(1)" class="btn btn-primary btn-outline btn-flat btn-sm"><i class="fa fa-list-ul mt-1"></i></button>
+                        <button onclick="changeView(0)" class="btn btn-primary btn-outline btn-flat btn-sm"><i class="fa  fa-th-large mt-1"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="isList">
+            @foreach (var item in Model.CategoriesWithProducts)
+            {
+                @if (item.IsActive)
+                {
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h3 class="col-md-12"> <i class="fa fa-star-o text-qrRest"></i>@item.Name</h3>
+                        </div>
+                        <div class="ibox-content ibox-br">
+                            <div class="sk-spinner sk-spinner-wave">
+                                <div class="sk-rect1"></div>
+                                <div class="sk-rect2"></div>
+                                <div class="sk-rect3"></div>
+                                <div class="sk-rect4"></div>
+                                <div class="sk-rect5"></div>
+                            </div>
+                            <table class="table table-hover">
+                                <tbody>
+                                    @foreach (var menu in item.MenuProducts)
+                                    {
+                                        @if (menu.IsActive)
+                                        {
+                                            <tr>
+                                                <td class="actionOfMenu">
+                                                    <div class="row">
+                                                        <input class="menu-quantity-input ml-3" id="txtQuantity-@menu.Id" value="1" />
+                                                        @if (@menu.MenuProductFeatures.Count() > 0)
+                                                        {
+                                                            <div onclick="openFeatureDialog(this, '@menu.Id', true)" class="menu-button ml-1">
+                                                                <i class="fa fa-plus" style="margin-top:5px"></i>
+                                                                <h3 class="d-none">@menu.Name </h3>
+                                                                <span class="d-none">
+                                                                    @foreach (var feature in menu.MenuProductFeatures)
+                                                                    {
+                                                                        <text>
+                                                                            @feature.Id,@feature.Name,@feature.IsMultiSelect,
+                                                                            @foreach (var featureItem in feature.ProductFeatureItems)
+                                                                            {
+                                                                                <text>
+                                                                                    @featureItem.Id!@featureItem.Name!@featureItem.Price.ToString().Replace(',', '.')
+                                                                                    ?
+                                                                                </text>
+                                                                            }
+                                                                            #
+                                                                        </text>
+                                                                    }
+                                                                </span>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div onclick="addTocart('@menu.Id', true)" class="menu-button ml-1">
+                                                                <i class="fa fa-plus" style="margin-top:5px"></i>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </td>
+                                                <td style="width:70%;" class="cart-item-upFont">
+                                                    @menu.Name<br />
+                                                    @if (menu.Description.Length > 73)
+                                                    {
+                                                        <a class="text-menu-description text-muted">@menu.Description.Substring(0, 72)</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="text-menu-description text-muted">@menu.Description</a>
+                                                    }
+                                                </td>
+                                                <td class="cart-item-upFont">
+                                                    @menu.Price @(String.IsNullOrEmpty(Model.Restaurant.CurrencySymbol) ? SharedLocalizer.GetLocalizedValue("Currency") : Model.Restaurant.CurrencySymbol)
+                                                </td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td class="actionOfMenu">
+                                                </td>
+                                                <td style="width:70%;" class="cart-item-upFont">
+                                                    <span>@menu.Name </span>  <span class="text-danger"> - @SharedLocalizer.GetLocalizedValue("ProductNotAvailable")</span><br />
+                                                    @if (menu.Description.Length > 73)
+                                                    {
+                                                        <a class="text-menu-description text-muted">@menu.Description.Substring(0, 72)</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="text-menu-description text-muted">@menu.Description</a>
+                                                    }
+
+                                                </td>
+                                                <td class="cart-item-upFont">
+                                                    @menu.Price @(String.IsNullOrEmpty(Model.Restaurant.CurrencySymbol) ? SharedLocalizer.GetLocalizedValue("Currency") : Model.Restaurant.CurrencySymbol)
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <div id="isNotList" style="display:none">
+            <div>
+                @foreach (var item in Model.CategoriesWithProducts)
+                {
+                    @if (item.IsActive)
+                    {
+                        <h3 class="mt-4"> <i class="fa fa-star-o text-qrRest"></i>@item.Name</h3>
+                        <hr />
+                        <div class="row">
+                            @foreach (var menu in item.MenuProducts)
+                            {
+                                @if (menu.IsActive)
+                                {
+                                    <div class="col-md-4">
+                                        <div class="ibox">
+                                            <div class="ibox-content product-box" style="height:370px;">
+                                                @if (menu.PhotoUrl != "default.png")
+                                                {
+                                                    <div class="product-imitation" style="background-image:url('/images/menuProduct/@menu.PhotoUrl'); background-size:cover;">
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="product-imitation" style="background-image:url('/images/menuProduct/@menu.PhotoUrl'); background-size:cover;">
+                                                        QR Restaurant
+                                                    </div>
+                                                }
+
+                                                <div class="product-desc">
+                                                    <span class="product-price">
+                                                        @menu.Price @(String.IsNullOrEmpty(Model.Restaurant.CurrencySymbol) ? SharedLocalizer.GetLocalizedValue("Currency") : Model.Restaurant.CurrencySymbol)
+                                                    </span>
+                                                    <small class="text-muted">  @menu.MenuCategory.Name </small>
+                                                    <a class="product-name"> @menu.Name</a>
+                                                    <div class="small m-t-xs" style="height:28px">
+                                                        @if (menu.Description.Length > 73)
+                                                        {
+                                                            @menu.Description.Substring(0, 72)
+                                                        }
+                                                        else
+                                                        {
+                                                            @menu.Description
+                                                        }
+                                                    </div>
+                                                    <div class="m-t mx-auto">
+                                                        <div class="row">
+                                                            <input id="txtQuantityFloor-@menu.Id" class="product-quantity-input ml-3" value="1" />
+                                                            @if (@menu.MenuProductFeatures.Count() > 0)
+                                                            {
+                                                                <div onclick="openFeatureDialog(this, '@menu.Id', false)" class="btn btn-sm btn-outline btn-primary add-cursor ml-1">
+                                                                    @SharedLocalizer.GetLocalizedValue("Add")
+                                                                    <i class="fa fa-long-arrow-right mt-1"></i>
+                                                                    <h3 class="d-none">@menu.Name </h3>
+                                                                    <span class="d-none">
+                                                                        @foreach (var feature in menu.MenuProductFeatures)
+                                                                        {
+                                                                            <text>
+                                                                                @feature.Id,@feature.Name,@feature.IsMultiSelect,
+                                                                                @foreach (var featureItem in feature.ProductFeatureItems)
+                                                                                {
+                                                                                    <text>
+                                                                                        @featureItem.Id!@featureItem.Name!@featureItem.Price.ToString().Replace(',', '.')
+                                                                                        ?
+                                                                                    </text>
+                                                                                }
+                                                                                #
+                                                                            </text>
+                                                                        }
+                                                                    </span>
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <button onclick="addTocart('@menu.Id', false)" class="btn btn-sm btn-outline btn-primary ml-1">
+                                                                    @SharedLocalizer.GetLocalizedValue("Add")
+                                                                    <i class="fa fa-long-arrow-right mt-1"></i>
+                                                                </button>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-md-4">
+                                        <div class="ibox">
+                                            <div class="ibox-content product-box" style="height:370px;">
+                                                @if (menu.PhotoUrl != "default.png")
+                                                {
+                                                    <div class="product-imitation" style="background-image:url('/images/menuProduct/@menu.PhotoUrl'); background-size:cover;">
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="product-imitation" style="background-image:url('/images/menuProduct/@menu.PhotoUrl'); background-size:cover;">
+                                                        QR Restaurant
+                                                    </div>
+                                                }
+
+                                                <div class="product-desc">
+                                                    <span class="product-price">
+                                                        @menu.Price @(String.IsNullOrEmpty(Model.Restaurant.CurrencySymbol) ? SharedLocalizer.GetLocalizedValue("Currency") : Model.Restaurant.CurrencySymbol)
+                                                    </span>
+                                                    <small class="text-muted">  @menu.MenuCategory.Name </small>
+                                                    <a class="product-name"> @menu.Name</a>
+                                                    <div class="small m-t-xs" style="height:28px">
+                                                        @if (menu.Description.Length > 73)
+                                                        {
+                                                            @menu.Description.Substring(0, 72)
+                                                        }
+                                                        else
+                                                        {
+                                                            @menu.Description
+                                                        }
+                                                    </div>
+                                                    <div class="m-t mx-auto">
+                                                        <span class="text-danger">@SharedLocalizer.GetLocalizedValue("ProductNotAvailable")</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+<div class="modal inmodal" id="modal-dialog" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated fadeIn">
+            <div class="modal-header">
+                <h4 id="txtMenuName" class="modal-title mx-auto"></h4>
+            </div>
+            <div class="ibox no-margins" id="boxBA">
+                <div class="first ibox-content" style="border-top:none;padding:0">
+                    <div class="sk-spinner sk-spinner-wave">
+                        <div class="sk-rect1"></div>
+                        <div class="sk-rect2"></div>
+                        <div class="sk-rect3"></div>
+                        <div class="sk-rect4"></div>
+                        <div class="sk-rect5"></div>
+                    </div>
+
+                    <div class="content">
+                        <div class="numbers-row">
+                            <input type="text" value="1" id="qty_1" class="qty2 form-control" name="quantity">
+                        </div>
+                        <span id="txtFeatureValidation" class="text-danger"></span>
+                        <div id="menuFeatureList">
+                        </div>
+
+                    </div>
+                    <div class="footer" style="position:inherit">
+                        <div class="row small-gutters">
+                            <div class="col-4">
+                                <button onclick="cancelModal()" class="btn btn-sm btn-outline btn-default btn-block">
+                                    @SharedLocalizer.GetLocalizedValue("Cancel")
+                                    <i class="fa fa-times mt-1"></i>
+                                </button>
+                            </div>
+                            <div class="col-8">
+                                <button onclick="addTocart(0, false)" class="btn btn-sm btn-outline btn-primary btn-block">
+                                    @SharedLocalizer.GetLocalizedValue("Add")
+                                    <i class="fa fa-long-arrow-right mt-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /Row -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="call-done-modal" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated fadeIn">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <p class="p-y m-t text-center">
+                        <i class="fa fa-check fa-5x text-success"></i>
+                    </p>
+                    <div class="modal-body">
+                        <h3 class="text-center"> @SharedLocalizer.GetLocalizedValue("CallSuccess") </h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary text-white" data-dismiss="modal" style="color:#910400;">@SharedLocalizer.GetLocalizedValue("Okey")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/menuController.js"></script>
+}

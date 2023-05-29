@@ -1,0 +1,75 @@
+﻿@model MenuCategoryViewModel
+@{
+    ViewData["Title"] = "AddOrUpdate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+<script>
+    $(document).ready(function () {
+        $('#btnCategory').toggleClass('btn-outline');           
+
+    });
+
+    const createLoad = () => {
+        $('#qrTableForm').children('.ibox-content').toggleClass('sk-loading');
+    }
+</script>
+   
+}
+
+<div class="row">
+    @await Component.InvokeAsync("RestaurantManagerMenu")
+    <div class="col-md-9">
+        <div id="formAdd" class="row animated">
+            <div class="col-md-12">
+                <div class="ibox float-e-margins" id="qrTableForm">
+                    <div class="ibox-content">
+                        <div class="sk-spinner sk-spinner-wave">
+                            <div class="sk-rect1"></div>
+                            <div class="sk-rect2"></div>
+                            <div class="sk-rect3"></div>
+                            <div class="sk-rect4"></div>
+                            <div class="sk-rect5"></div>
+                        </div>
+
+                        <form asp-action="AddOrUpdate" asp-controller="MenuCategory">
+                            <div class="row">
+                                <div class="col-lg-12 control">
+                                    <label class="form-col-form-label" for="">@SharedLocalizer.GetLocalizedValue("CreateMenuCategory")</label>
+                                    <div style="border-top: 1px solid#888; padding-top:15px; font-size:80%"></div>
+                                </div>
+                            </div>
+                            <br>
+                            <input hidden asp-for="Id"  />
+
+                            <div class="row">
+                                <div class="form-group form-material col-xl-6">
+                                    <label class="form-col-form-label">
+                                        @SharedLocalizer.GetLocalizedValue("CategoryName")* <span asp-validation-for="Name" id="validatorName" class="text-danger"></span>
+                                    </label>
+                                    <input asp-for="Name" type="text" placeholder="Manchaster, Blue table ..." class="form-control">
+                                </div>
+                                <div class="form-group form-material col-xl-6">
+                                    <label class="form-col-form-label">
+                                        @SharedLocalizer.GetLocalizedValue("RowNumber")* <span asp-validation-for="RowNumber" id="validatorNo" class="text-danger"></span>
+                                    </label>
+                                    <input asp-for="RowNumber"  type="text" placeholder="1, 2, 3 ..." class="form-control">
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="container">
+                                    <button onclick="createLoad()" class="btn btn-outline btn-primary btn-block"> @SharedLocalizer.GetLocalizedValue("Save")</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

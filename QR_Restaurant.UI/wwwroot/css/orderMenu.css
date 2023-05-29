@@ -1,0 +1,255 @@
+﻿
+/*-------- Modal Order --------*/
+#modal-dialog .content {
+    padding: 20px 20px 0 20px;
+}
+
+    #modal-dialog .content h5 {
+        font-size: 14px;
+        font-size: 0.875rem;
+        margin-bottom: 15px;
+    }
+
+    #modal-dialog .content ul {
+        padding: 0;
+        margin: 0 0 20px 0;
+        list-style: none;
+    }
+
+        #modal-dialog .content ul li span {
+            float: right;
+        }
+
+#modal-dialog .footer {
+    -webkit-box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.08);
+    box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    padding: 15px;
+    -webkit-border-radius: 0 0 3px 3px;
+    -moz-border-radius: 0 0 3px 3px;
+    -ms-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+}
+
+@media (max-width: 767px) {
+    #modal-dialog .footer .mb-mobile {
+        margin-bottom: 5px;
+    }
+}
+
+.numbers-row {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    border: 2px solid #d2d8dd;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    margin-bottom: 25px;
+}
+
+    .numbers-row input {
+        position: relative;
+        width: 40px;
+        height: 35px;
+        text-align: center;
+        left: 50%;
+        padding: 5px;
+        border: none;
+        margin-left: -20px;
+        font-weight: 500;
+        background: none;
+        font-size: 18px;
+        font-size: 1.125rem;
+    }
+
+        .numbers-row input:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+    .numbers-row .button_inc {
+        cursor: pointer;
+        position: absolute;
+        width: 33px;
+        height: 40px;
+        line-height: 30px;
+        text-align: center;
+        z-index: 2;
+        font-size: 28px;
+        font-size: 1.75rem;
+        font-weight: 300 !important;
+        color: #999;
+    }
+
+        .numbers-row .button_inc:hover {
+            color: #e54750;
+        }
+
+    .numbers-row .dec,
+    .numbers-row .inc {
+        top: 2px;
+    }
+
+    .numbers-row .dec {
+        left: 0;
+    }
+
+    .numbers-row .inc {
+        right: 0;
+    }
+
+
+.container_radio {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-weight: 400;
+}
+
+    .container_radio input {
+        position: absolute;
+        opacity: 0;
+    }
+
+        .container_radio input:checked ~ .checkmark {
+            border: 2px solid #e54750;
+            -webkit-box-shadow: 0px 0px 0px 2px rgba(229, 71, 80, 0.3);
+            -moz-box-shadow: 0px 0px 0px 2px rgba(229, 71, 80, 0.3);
+            box-shadow: 0px 0px 0px 2px rgba(229, 71, 80, 0.3);
+        }
+
+            .container_radio input:checked ~ .checkmark:after {
+                opacity: 1;
+            }
+
+    .container_radio .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        border: 2px solid #e1e8ed;
+        background-color: #fff;
+        border-radius: 50%;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .container_radio .checkmark:after {
+            display: block;
+            content: "";
+            position: absolute;
+            opacity: 0;
+            top: 3px;
+            left: 3px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #e54750;
+        }
+
+    .container_radio:hover .checkmark {
+        border: 2px solid #e54750;
+    }
+
+
+.form-group .container_radio, .modal-body .form-group .container_check {
+    font-weight: 400;
+}
+
+.container_check {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-weight: 400;
+}
+
+    .container_check input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+        .container_check input:checked ~ .checkmark {
+            background-color: #e54750;
+            border: 2px solid transparent;
+            -webkit-box-shadow: 0px 0px 0px 2px rgba(229, 71, 80, 0.3);
+            -moz-box-shadow: 0px 0px 0px 2px rgba(229, 71, 80, 0.3);
+            box-shadow: 0px 0px 0px 2px rgba(229, 71, 80, 0.3);
+        }
+
+    .container_check .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        border: 2px solid #e1e8ed;
+        background-color: #fff;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        border-radius: 3px;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .container_check .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+    .container_check:hover .checkmark {
+        border: 2px solid #e54750;
+    }
+
+    .container_check input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+.form-group .container_radio, .modal-body .form-group .container_check {
+    font-weight: 400;
+}
+
+.menu-options-title {
+    font-size: 20px !important;
+}
+
+.menu-options-text {
+    font-size: 14px;
+    /*font-weight: 600;*/
+    /*font-family: 'Open Sans', helvetica, arial, sans-serif;*/
+}

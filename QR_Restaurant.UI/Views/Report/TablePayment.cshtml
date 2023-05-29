@@ -1,0 +1,116 @@
+﻿@model TablePaymentViewModel
+@{
+    ViewData["Title"] = SharedLocalizer.GetLocalizedValue("Payment");
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@SharedLocalizer.GetLocalizedValue("SoldStocks")</title>
+    <link rel="shortcut icon" type="image/png" href="~/images/favicon.png" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/animate.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body class="white-bg">
+    <div class="wrapper wrapper-content p-xl">
+        <div class="ibox-content p-xl">
+            <div class="row">
+                <div class="col-md-6">
+                    <address>
+                        <strong>@Model.RestaurantName</strong><br>
+
+                        @Model.RestaurantAddress<br />
+                        <abbr title="Phone">P:</abbr> @Model.REstaurantPhone
+
+                    </address>
+                </div>
+                <div class="col-md-6 text-right">
+                    <p>
+                        <span><strong>@SharedLocalizer.GetLocalizedValue("TableNo"):</strong> @Model.TableNo</span>
+                        <br> <span><strong>@SharedLocalizer.GetLocalizedValue("Date"):</strong> @DateTime.Now.ToLongDateString()</span>
+                    </p>
+                </div>
+            </div>
+            <div class="table-responsive m-t">
+                <table class="table invoice-table table-striped">
+                    <thead>
+                        <tr>
+                            <th>@SharedLocalizer.GetLocalizedValue("Product")</th>
+                            <th>@SharedLocalizer.GetLocalizedValue("ProductFeatures")</th>
+                            <th>@SharedLocalizer.GetLocalizedValue("Piece")</th>
+                            <th>@Helper.ToTitleCase(SharedLocalizer.GetLocalizedValue("Total"))</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.SoldStocks)
+                        {
+                            <tr>
+                                <td>
+                                    <div>
+                                        @if (item.FeatureItems != null && item.FeatureItems.Count() > 0)
+                                        {
+                                            <p>
+                                                <span>@item.ProductName</span>
+                                                <span> ( @item.ProductTotal @(String.IsNullOrEmpty(Model.CurrencySymbol) ? SharedLocalizer.GetLocalizedValue("Currency") : Model.CurrencySymbol))</span>
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            @item.ProductName
+                                        }
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        @if (item.FeatureItems != null && item.FeatureItems.Count() > 0)
+                                        {
+                                            foreach (var feature in item.FeatureItems)
+                                            {
+                                                <span>@feature.Name   @feature.Price @(String.IsNullOrEmpty(Model.CurrencySymbol) ? SharedLocalizer.GetLocalizedValue("Currency") : Model.CurrencySymbol)</span>
+
+                                                <br />
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span>-</span>
+                                        }
+                                    </div>
+                                </td>
+                                <td>@item.ProductQuantity</td>
+                                <td>@(item.FeatureItems != null ? Convert.ToDecimal(item.ProductTotal) + item.FeatureItems.Sum(x => x.Price) : item.ProductTotal) @(String.IsNullOrEmpty(Model.CurrencySymbol) ? SharedLocalizer.GetLocalizedValue("Currency") : Model.CurrencySymbol)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <table class="table invoice-total">
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>@SharedLocalizer.GetLocalizedValue("Total") :</strong>
+                        </td>
+                        <td>
+                            @(Model.SoldStocks.Sum(x => Convert.ToDecimal(x.ProductTotal)) + Model.SoldStocks.Sum(y => y.FeatureItems != null ? y.FeatureItems.Sum(z => z.Price) : 0))
+                            @(String.IsNullOrEmpty(Model.CurrencySymbol) ? SharedLocalizer.GetLocalizedValue("Currency") : Model.CurrencySymbol)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

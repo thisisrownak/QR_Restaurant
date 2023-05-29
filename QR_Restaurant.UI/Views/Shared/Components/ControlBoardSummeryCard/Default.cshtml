@@ -1,0 +1,27 @@
+﻿@model ControlBoardSummeryViewModel
+
+    <div class="card overflow-hidden">
+        <div class="card-body bg-gradient2">
+            <div class="">
+                <div class="card-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <h2 class="font-weight-bold text-white">@Model.TotalSalesAmount جنيه</h2>
+                <p class="text-white mb-0 font-16">إجمالى المبيعات</p>
+            </div>
+        </div><!--end card-body-->
+        <div class="card-body">
+        <p class="text-white mb-0 font-16" style="color:black!important;">إجمالي الطلبات:@Model.TotalOrderCount أوردر</p>
+        <p class="text-white mb-0 font-16" style="color:black!important;">إجمالي أوامر التسليم:299 أوردر</p>
+        <p class="text-white mb-0 font-16" style="color:black!important;">مجموع الموظفين:@Model.TotalEmployees طاقم عمل</p>
+        <p class="text-white mb-0 font-16" style="color:black!important;">إجمالي التقييمات:299 التقييمات</p>
+        </div><!--end card-body-->
+    </div><!--end card-->
+
+
+<script>
+    const getLink = (param) => {
+        
+    }
+</script>
+

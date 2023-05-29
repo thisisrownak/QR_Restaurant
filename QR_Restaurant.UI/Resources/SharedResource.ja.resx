@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>アクティブ</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="AddOrderSuccessMessage" xml:space="preserve">
+    <value>ご注文は送信されました。</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>住所</value>
+  </data>
+  <data name="AddToCartMessage" xml:space="preserve">
+    <value>商品がカートに追加されました。</value>
+  </data>
+  <data name="AddWaiterWarning" xml:space="preserve">
+    <value>注文を完了するには、ウェイターを追加する必要があります。</value>
+  </data>
+  <data name="Allregisteredrestaurants" xml:space="preserve">
+    <value>登録レストラン</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>準備</value>
+  </data>
+  <data name="Arabic" xml:space="preserve">
+    <value>アラビア語</value>
+  </data>
+  <data name="Block" xml:space="preserve">
+    <value>順番</value>
+  </data>
+  <data name="BlockRestaurant" xml:space="preserve">
+    <value>あなたはレストランを受動的にしたいですか？</value>
+  </data>
+  <data name="CallBillMessage" xml:space="preserve">
+    <value>アカウントが必要です</value>
+  </data>
+  <data name="CallSuccess" xml:space="preserve">
+    <value>私たちはできるだけ早く来ます</value>
+  </data>
+  <data name="CallWaiter" xml:space="preserve">
+    <value>ウェイターに電話する</value>
+  </data>
+  <data name="CallWaiterMessage" xml:space="preserve">
+    <value>ウェイターが呼ばれました。</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="CancelQuestion" xml:space="preserve">
+    <value>あなたがキャンセルしてもよろしいです？</value>
+  </data>
+  <data name="Cart" xml:space="preserve">
+    <value>マイオーダーカート</value>
+  </data>
+  <data name="CategoryName" xml:space="preserve">
+    <value>種別名</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>パスワードを変更する</value>
+  </data>
+  <data name="Chinese" xml:space="preserve">
+    <value>中国語</value>
+  </data>
+  <data name="Clock" xml:space="preserve">
+    <value>時計</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="ClosedTableNotification" xml:space="preserve">
+    <value>テーブルは空です</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>コンプリート</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>完了</value>
+  </data>
+  <data name="CompletedOrdersToday" xml:space="preserve">
+    <value>今日完了した注文</value>
+  </data>
+  <data name="CreateMenu" xml:space="preserve">
+    <value>メニューの作成</value>
+  </data>
+  <data name="CreateMenuCategory" xml:space="preserve">
+    <value>メニューカテゴリの作成</value>
+  </data>
+  <data name="CreateQRCodePDFForAllTables" xml:space="preserve">
+    <value>すべてのテーブルのQRコードPDFを作成する</value>
+  </data>
+  <data name="CreateQrTable" xml:space="preserve">
+    <value>QRコードで新しいテーブルを作成する</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>¥</value>
+  </data>
+  <data name="CurrencyDescription" xml:space="preserve">
+    <value>通貨を入力しない場合は、選択した言語に従って表示されます。</value>
+  </data>
+  <data name="CurrencyUnit" xml:space="preserve">
+    <value>通貨単位</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>日付範囲</value>
+  </data>
+  <data name="DeleteQuestion" xml:space="preserve">
+    <value>消去してもよろしいですか？</value>
+  </data>
+  <data name="Delivery" xml:space="preserve">
+    <value>配達</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>説明</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>詳細</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>コンプリート</value>
+  </data>
+  <data name="DownloadQrImage" xml:space="preserve">
+    <value>Qr画像をダウンロード</value>
+  </data>
+  <data name="DragOrder" xml:space="preserve">
+    <value>リスト間で注文をドラッグ 、リスト間で注文をドラッグ</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>編集</value>
+  </data>
+  <data name="EmptyCartMessage" xml:space="preserve">
+    <value>カートはまだ空です。</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>終了日</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>英語</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>エラー</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>申し訳ありませんが、現在、ご希望のことはできません。</value>
+  </data>
+  <data name="FillField" xml:space="preserve">
+    <value>フィールドに入力してください。</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>フランス語</value>
+  </data>
+  <data name="German" xml:space="preserve">
+    <value>ドイツ人</value>
+  </data>
+  <data name="GetPaid" xml:space="preserve">
+    <value>お金をもらう</value>
+  </data>
+  <data name="GetPaidQuestion" xml:space="preserve">
+    <value>すべての注文は完了して支払い済みとして保存されます。支払いを承認しますか？</value>
+  </data>
+  <data name="Hindi" xml:space="preserve">
+    <value>ヒンディー語</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>ホーム</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>画像</value>
+  </data>
+  <data name="InProgress" xml:space="preserve">
+    <value>準備</value>
+  </data>
+  <data name="InvalidKanbanUpdate" xml:space="preserve">
+    <value>支払い済の注文のステータスは変更できません。 ページを更新。</value>
+  </data>
+  <data name="Japanese" xml:space="preserve">
+    <value>日本人</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>舌</value>
+  </data>
+  <data name="LockAccountMessage" xml:space="preserve">
+    <value>アカウントが凍結されました。 に連絡してアカウントを開設する必要があります。</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>ロック済み</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>ログイン</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>ログアウト</value>
+  </data>
+  <data name="ManagementPanel" xml:space="preserve">
+    <value>管理パネル</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>マネージャー</value>
+  </data>
+  <data name="ManagerEmail" xml:space="preserve">
+    <value>承認された電子メール</value>
+  </data>
+  <data name="ManagerName" xml:space="preserve">
+    <value>正式名称</value>
+  </data>
+  <data name="ManagerPhone" xml:space="preserve">
+    <value>認定電話</value>
+  </data>
+  <data name="ManagerSurname" xml:space="preserve">
+    <value>許可された姓</value>
+  </data>
+  <data name="ManagerUsername" xml:space="preserve">
+    <value>許可されたユーザー名</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>メニュー</value>
+  </data>
+  <data name="MenuCategories" xml:space="preserve">
+    <value>メニューカテゴリ</value>
+  </data>
+  <data name="MenuList" xml:space="preserve">
+    <value>メニューリスト</value>
+  </data>
+  <data name="MenuOptions" xml:space="preserve">
+    <value>メニューオプション</value>
+  </data>
+  <data name="MostPreferred" xml:space="preserve">
+    <value>最も好ましい</value>
+  </data>
+  <data name="MultiChoice" xml:space="preserve">
+    <value>複数選択</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>新着</value>
+  </data>
+  <data name="NewOrderMessage" xml:space="preserve">
+    <value>新しい注文があります！</value>
+  </data>
+  <data name="NewOrderTableNotification" xml:space="preserve">
+    <value>新しい注文があります</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>新しいパスワード</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>番号</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>あなたのデータは利用できません。</value>
+  </data>
+  <data name="NoDataDesc" xml:space="preserve">
+    <value>データがある場合は、ここで確認できます。</value>
+  </data>
+  <data name="NoOrderMessage" xml:space="preserve">
+    <value>新規注文はありません。</value>
+  </data>
+  <data name="NoTableMessage" xml:space="preserve">
+    <value>レストランのテーブルを追加する必要があります。</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>ない</value>
+  </data>
+  <data name="NotePlaceholder" xml:space="preserve">
+    <value>注文に関するメモがあるかどうかを示します</value>
+  </data>
+  <data name="OnRequest" xml:space="preserve">
+    <value>要求に応じて</value>
+  </data>
+  <data name="OpenTableNotification" xml:space="preserve">
+    <value>お客さんがいます</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>オプション</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>注文</value>
+  </data>
+  <data name="OrderBoard" xml:space="preserve">
+    <value>オーダーボード</value>
+  </data>
+  <data name="OrderButton" xml:space="preserve">
+    <value>注文する</value>
+  </data>
+  <data name="OrderHistory" xml:space="preserve">
+    <value>注文履歴</value>
+  </data>
+  <data name="OrderList" xml:space="preserve">
+    <value>注文 (一覧)</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>注文</value>
+  </data>
+  <data name="OrderTables" xml:space="preserve">
+    <value>注文表</value>
+  </data>
+  <data name="Passive" xml:space="preserve">
+    <value>受動的</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>パスワード</value>
+  </data>
+  <data name="PasswordAgain" xml:space="preserve">
+    <value>パスワードリピート</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>支払い</value>
+  </data>
+  <data name="PaymentSuccessMessage" xml:space="preserve">
+    <value>すべての注文は、完了して支払われたものとして記録されます。サイドタブから支払い書類を入手できます。</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>電話</value>
+  </data>
+  <data name="Piece" xml:space="preserve">
+    <value>ピース</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>選んでください</value>
+  </data>
+  <data name="Polish" xml:space="preserve">
+    <value>研磨</value>
+  </data>
+  <data name="Portuguse" xml:space="preserve">
+    <value>ポルトガル語</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>価格</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>プライバシー</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>製品</value>
+  </data>
+  <data name="ProductFeatureItems" xml:space="preserve">
+    <value>メニュー機能オプション</value>
+  </data>
+  <data name="ProductFeatures" xml:space="preserve">
+    <value>メニューの特徴</value>
+  </data>
+  <data name="ProductNotAvailable" xml:space="preserve">
+    <value>この製品は現在ご利用いただけません。</value>
+  </data>
+  <data name="QrCodeTables" xml:space="preserve">
+    <value>QRコード表</value>
+  </data>
+  <data name="RegisterForm" xml:space="preserve">
+    <value>登録用紙</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>拒否されました</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>私を覚えてますか</value>
+  </data>
+  <data name="RemoveToCartMessage" xml:space="preserve">
+    <value>製品はカートから削除されました。</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>レポート</value>
+  </data>
+  <data name="RequestPayment" xml:space="preserve">
+    <value>支払いを要求する</value>
+  </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>飲食店</value>
+  </data>
+  <data name="RestaurantDescription" xml:space="preserve">
+    <value>レストランの説明</value>
+  </data>
+  <data name="RestaurantDetails" xml:space="preserve">
+    <value>レストランの詳細</value>
+  </data>
+  <data name="RestaurantManagerAccountDetails" xml:space="preserve">
+    <value>レストランエグゼクティブアカウントの詳細</value>
+  </data>
+  <data name="RestaurantName" xml:space="preserve">
+    <value>レストラン名</value>
+  </data>
+  <data name="RestaurantRegistration" xml:space="preserve">
+    <value>レストラン登録</value>
+  </data>
+  <data name="Restaurants" xml:space="preserve">
+    <value>レストラン</value>
+  </data>
+  <data name="RestaurantSettings" xml:space="preserve">
+    <value>レストランの設定</value>
+  </data>
+  <data name="RestaurantStaff" xml:space="preserve">
+    <value>レストランスタッフ</value>
+  </data>
+  <data name="RestaurantUrl" xml:space="preserve">
+    <value>レストランのURL</value>
+  </data>
+  <data name="RowNumber" xml:space="preserve">
+    <value>行番号</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+    <value>ロシア</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>セーブ</value>
+  </data>
+  <data name="SelectImage" xml:space="preserve">
+    <value>画像を選択</value>
+  </data>
+  <data name="SelectOptions" xml:space="preserve">
+    <value>選択を完了してください。</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="SiteSettings" xml:space="preserve">
+    <value>サイト設定</value>
+  </data>
+  <data name="SoldStocks" xml:space="preserve">
+    <value>売却済み株式</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>スペイン語</value>
+  </data>
+  <data name="StaffManagement" xml:space="preserve">
+    <value>スタッフ管理</value>
+  </data>
+  <data name="Staffs" xml:space="preserve">
+    <value>スタッフ</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>開始日</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状態</value>
+  </data>
+  <data name="SuccessProcess" xml:space="preserve">
+    <value>トランザクションは正常に完了しました。</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>姓</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>テーブル</value>
+  </data>
+  <data name="TableName" xml:space="preserve">
+    <value>テーブル名</value>
+  </data>
+  <data name="TableNameShowInQr" xml:space="preserve">
+    <value>テーブル名はQrコードpdfに表示されます。</value>
+  </data>
+  <data name="TableNo" xml:space="preserve">
+    <value>テーブル番号</value>
+  </data>
+  <data name="TableNoShowInQr" xml:space="preserve">
+    <value>テーブル番号をQrコードpdfに表示します。</value>
+  </data>
+  <data name="Tables" xml:space="preserve">
+    <value>テーブル</value>
+  </data>
+  <data name="TemporaryPassword" xml:space="preserve">
+    <value>仮パスワード</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>合計</value>
+  </data>
+  <data name="Turkish" xml:space="preserve">
+    <value>トルコ語</value>
+  </data>
+  <data name="Unblock" xml:space="preserve">
+    <value>アクティベート</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>単価</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>ユーザー名</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>バージョン</value>
+  </data>
+  <data name="Waiter" xml:space="preserve">
+    <value>ウェイター</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>ようこそ</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>はい</value>
+  </data>
+  <data name="İtalian" xml:space="preserve">
+    <value>イタリアの</value>
+  </data>
+</root>

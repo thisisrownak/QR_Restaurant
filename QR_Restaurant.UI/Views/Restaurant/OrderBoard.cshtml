@@ -1,0 +1,136 @@
+﻿@model RestaurantManagerViewModel
+@{
+    ViewData["Title"] = "OrderBoard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <style>
+        .board-item-text {
+            display: block;
+            word-break: break-word;
+        }
+
+        .date-block {
+            display: inline-block;
+            max-width: 80px;
+            word-break: break-word;
+        }
+    </style>
+}
+
+    @section Scripts {
+    <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/lib/touchpunch/jquery.ui.touch-punch.min.js"></script>
+    <script src="~/js/orderBoardController.js"></script>
+}
+
+    <div class="row">
+        @await Component.InvokeAsync("RestaurantManagerMenu")
+
+        <div class="col-md-9">
+            <input hidden value="@SharedLocalizer.GetLocalizedValue("NewOrderMessage")" id="lblNewOrderMessage" />
+            <input hidden value="@SharedLocalizer.GetLocalizedValue("TableNo")" id="lblTableNo" />
+            <input hidden value="@SharedLocalizer.GetLocalizedValue("Note")" id="lblNote" />
+            <input hidden value="@SharedLocalizer.GetLocalizedValue("GetPaid")" id="lblPaid" />
+            <input hidden value="@SharedLocalizer.GetLocalizedValue("CallWaiterMessage")" id="lblCallWaiter" />
+            <input hidden value="@SharedLocalizer.GetLocalizedValue("CallBillMessage")" id="lblCallBill" />
+
+            <input hidden value="@Model.Id" id="lblRestaurantId" />
+            <div class="row">
+                <div class="col-sm-4 agile-column">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <h3>@SharedLocalizer.GetLocalizedValue("New")</h3>
+                            <p class="small">
+                                <i class="fa fa-hand-o-up"></i> @SharedLocalizer.GetLocalizedValue("DragOrder")
+                            </p>
+                            <ul class="sortable-list connectList agile-list" id="todo">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 agile-column">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <h3>@SharedLocalizer.GetLocalizedValue("InProgress")</h3>
+                            <p class="small"><i class="fa fa-hand-o-up"></i> @SharedLocalizer.GetLocalizedValue("DragOrder") </p>
+                            <ul class="sortable-list connectList agile-list" id="inprogress">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 agile-column">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <h3>@SharedLocalizer.GetLocalizedValue("Completed")</h3>
+                            <p class="small"><i class="fa fa-hand-o-up"></i> @SharedLocalizer.GetLocalizedValue("DragOrder") </p>
+                            <ul class="sortable-list connectList agile-list" id="completed">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal inmodal" id="pay-modal" tabindex="-1" role="dialog"
+         aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content animated fadeIn">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <p class="p-y m-t text-center">
+                                @*<i class="fa fa-remove text-warning fa-5x"></i>*@
+                                <button type="button" class="close mr-3" data-dismiss="modal">
+                                    <span aria-hidden="true">&#xD7;</span><span class="sr-only">@SharedLocalizer.GetLocalizedValue("Close")</span>
+                                </button>
+                            </p>
+                            <div class="modal-header">
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center">@SharedLocalizer.GetLocalizedValue("GetPaidQuestion")</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary text-white" data-dismiss="modal" style="color:#910400;">@SharedLocalizer.GetLocalizedValue("No")</button> <a onclick="payOrder()" class="btn btn-primary text-white">@SharedLocalizer.GetLocalizedValue("Yes")</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="call-modal" tabindex="-1" role="dialog"
+     aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated fadeIn">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <p class="p-y m-t text-center">
+                            <img id="imgCall" />
+                        </p>
+                        <div class="modal-body">
+                            <h3 class="text-center" id="txtCallMessage"></h3>
+                            <div class="mt-4">
+                                <table class="table">
+                                    <tr>
+                                        <td><b>@SharedLocalizer.GetLocalizedValue("TableNo") : </b></td>
+                                        <td id="waiter-tableNo"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@SharedLocalizer.GetLocalizedValue("TableName") : </b></td>
+                                        <td id="waiter-tableName"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary text-white" data-dismiss="modal" style="color:#910400;">@SharedLocalizer.GetLocalizedValue("Okey")</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

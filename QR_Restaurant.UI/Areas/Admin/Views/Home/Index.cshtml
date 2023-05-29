@@ -1,0 +1,75 @@
+﻿@model AdminHomeViewModel
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#welcome').toggleClass('active');
+        });
+    </script>
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="ibox">
+            <div class="ibox-title">
+                <div class="col-md-12">
+                    <span class="badge badge-info float-right">@SharedLocalizer.GetLocalizedValue("Total")</span>
+                    <h5>@SharedLocalizer.GetLocalizedValue("Active") @SharedLocalizer.GetLocalizedValue("Restaurant")</h5>
+                </div>
+            </div>
+            <div class="ibox-content ibox-br">
+                <h1 class="no-margins">@Model.ActiveRestaurantCount</h1>
+                <small>@SharedLocalizer.GetLocalizedValue("Restaurant")</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="ibox">
+            <div class="ibox-title">
+                <div class="col-md-12">
+                    <span class="badge badge-info float-right">@SharedLocalizer.GetLocalizedValue("Total")</span>
+                    <h5>@SharedLocalizer.GetLocalizedValue("Passive") @SharedLocalizer.GetLocalizedValue("Restaurant")</h5>
+                </div>
+            </div>
+            <div class="ibox-content ibox-br">
+                <h1 class="no-margins">@Model.PassiveRestaurantCount</h1>
+                <small>@SharedLocalizer.GetLocalizedValue("Restaurant")</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="ibox">
+            <div class="ibox-title">
+                <div class="col-md-12">
+                    <span class="badge badge-info float-right">@SharedLocalizer.GetLocalizedValue("Total")</span>
+                    <h5>@SharedLocalizer.GetLocalizedValue("Completed") @SharedLocalizer.GetLocalizedValue("Orders").ToString().ToLower()</h5>
+                </div>
+            </div>
+            <div class="ibox-content ibox-br">
+                <h1 class="no-margins">@Model.CompletedOrderCount</h1>
+                <small>@SharedLocalizer.GetLocalizedValue("Order").ToString().ToLower()</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="ibox">
+            <div class="ibox-title">
+                <div class="col-md-12">
+                    <span class="badge badge-info float-right">@SharedLocalizer.GetLocalizedValue("Total")</span>
+                    <h5> @SharedLocalizer.GetLocalizedValue("Orders").ToString().ToLower() @SharedLocalizer.GetLocalizedValue("Payment")</h5>
+                </div>
+            </div>
+            <div class="ibox-content ibox-br">
+                <h1 class="no-margins">@Model.OrderEarnings</h1>
+                <small> @SharedLocalizer.GetLocalizedValue("Currency") </small>
+            </div>
+        </div>
+    </div>
+
+</div>

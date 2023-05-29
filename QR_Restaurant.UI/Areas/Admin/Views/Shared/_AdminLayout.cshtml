@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - QR MENU</title>
+    <link rel="shortcut icon" type="image/png" href="~/images/favicon.png" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/lib/DataTables/datatables.min.css" rel="stylesheet" />
+    <link href="/lib/toastr/toastr.min.css" rel="stylesheet">
+    <link href="~/css/animate.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" />
+    @await RenderSectionAsync("Styles", required: false)
+    <style>
+        a {
+            color: #D9534F;
+        }
+
+            a:hover {
+                color: #910400;
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="page-wrapper" class="gray-bg">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-controller="Account" asp-action="Login">QR MENU</a>
+                    <button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"><i class="fa fa-bars" style="color:#fafafa; font-size:28px;"></i></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link font-bold" id="homeMenuLink" href="/admin/home">@SharedLocalizer.GetLocalizedValue("Home")</a>
+                            </li>
+                            <li class="nav-item">
+                                <div class="dropdown profile-element">
+                                    <a class="nav-link" data-toggle="dropdown" aria-expanded="false">
+                                        <span>
+                                            @*<img alt="image" class="rounded-circle" src="~/images/48User.png">*@
+                                            <i class="fa fa-globe mr-2"></i>@SharedLocalizer.GetLocalizedValue("Language")<i class="fa fa-chevron-down ml-1"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                        @foreach (string name in Enum.GetNames(typeof(Languages)))
+                                        {
+                                            <li class="dropdown-item">
+                                                <a href="/home/SetCulture?culture=@Enumeration.GetEnumDescription((Languages)Enum.Parse(typeof(Languages), name, true))&returnUrl=@($"{ViewContext.HttpContext.Request.Path}{ViewContext.HttpContext.Request.QueryString.ToString().Replace("&", "!")}")">@SharedLocalizer.GetLocalizedValue(name)</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <ul class="nav navbar-top-links">
+                            @await Component.InvokeAsync("UserSummary")
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+            <div class="wrapper wrapper-content">
+                <div class="container" style="height: 100%;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="list-group" style="background-color:white;">
+                                <a href="/admin/home" id="welcome" class="list-group-item list-group-item-action">@SharedLocalizer.GetLocalizedValue("Home")</a>
+                                <a href="/admin/account" id="incomeRequests" class="list-group-item list-group-item-action">@SharedLocalizer.GetLocalizedValue("RestaurantRegistration")</a>
+                                <a href="/admin/restaurant" id="menuRestaurants" class="list-group-item list-group-item-action">@SharedLocalizer.GetLocalizedValue("Restaurants")</a>
+                                @*<a href="/admin/home/settings" id="menuSiteSettings" class="list-group-item list-group-item-action">@SharedLocalizer.GetLocalizedValue("SiteSettings")</a>*@
+                            </div>
+                            <br />
+                        </div>
+                        <div class="col-md-9">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer exact-fit">
+                <div class="container">
+                    <div class="float-right"> <strong>@SharedLocalizer.GetLocalizedValue("Version")</strong> 2.0.0</div>
+                    <div> &#xA9; 2023</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/DataTables/datatables.min.js"></script>
+    <script src="/lib/toastr/toastr.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        getSuccessNotification = (message) => {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "progressBar": true,
+                "preventDuplicates": false,
+                "positionClass": "toast-top-right",
+                "onclick": null,
+                "showDuration": "400",
+                "hideDuration": "1000",
+                "timeOut": "7000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+
+            var messages = message.split('*');
+            if (messages[1] === "success") {
+                toastr.success(messages[0]);
+            } else if (messages[1] === "warning") {
+                toastr.warning(messages[0]);
+            }
+            else {
+                toastr.error(messages[0]);
+            }
+
+        };
+
+    </script>
+
+
+    @if (TempData["messagex"] != null)
+    {
+        <input id="mesxyz" type="hidden" value="@TempData["messagex"]" />
+        <script type="text/javascript">
+            var message = document.getElementById('mesxyz').value;
+            getSuccessNotification(message);
+        </script>
+    }
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

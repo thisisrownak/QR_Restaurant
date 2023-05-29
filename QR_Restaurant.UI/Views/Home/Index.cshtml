@@ -1,0 +1,124 @@
+﻿@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Views/Shared/_OrderLayout.cshtml";
+}
+<style>
+    .hide{
+        display: none !important;
+    }
+</style>
+<div id="step1" style="display:none" class="d-flex flex-column">
+    <div>
+        <div id="category" class="d-flex flex-row align-content-around p-1 pb-2 overflow-auto">
+            
+        </div>
+    </div>
+    <div style="height:89.2vh" class="overflow-auto">
+        <div id="product_list" class="list-group list-group-flush border-bottom px-1" style="direction:rtl;">
+        </div>
+    </div>
+</div>
+
+<div id="step2" class="d-flex flex-column">
+    <div>
+        <div class="d-flex flex-row align-content-around p-1 pb-2 overflow-auto">
+            <button onClick="Back()" class="btn btn-warning rounded-pill px-1 mx-1 " type="button" style="min-width:70px">
+                Back
+            </button>
+        </div>
+    </div>
+    <div style="height:93vh">
+        
+    </div>
+</div>
+
+
+<script>
+    var product_list=[];
+    $(document).ready(function (){
+        $('#step2').addClass('hide');
+        GetCategory();
+        $('#category').mousewheel(function (e, delta) {
+            console.log(delta);
+            this.scrollLeft -= (delta);
+            e.preventDefault();
+        });
+    });
+
+    const OpneCartModal = (id) => {
+        $('#step2').removeClass('hide');
+        $('#step1').addClass('hide');
+        var product=product_list.find(x=>x.id==id);
+        console.log(product);
+    }
+
+    const Back = () => {
+        $('#step1').removeClass('hide');
+        $('#step2').addClass('hide');
+    }
+
+    const GetCategory=()=>{
+
+        $.ajax({
+            url: "/MenuCategory/Get",
+            type: 'GET',
+            success: function (res) {
+                var category_html = "";
+                if(res && res.length>0){
+                    res.forEach((data) => {
+                        category_html +=
+                        `<button onClick="GetProducts(`+data.id+`)" class="btn btn-warning rounded-pill px-1 mx-1 my-2" type="button" style="min-width:160px">
+                            `+data.name+`
+                            <img src="/assets/images/section.png">
+                        </button>`
+                    })
+                }
+                $("#category").empty().append(category_html);
+                GetProducts(res[0].id);
+            }
+        });
+    }
+
+    const GetProducts = (id) => {
+        $.ajax({
+            url: "/MenuProduct/GetProductByCategory?id="+id,
+            type: 'GET',
+            success: function (res) {
+                product_list=res;
+                var category_html = "";
+                if (res && res.length > 0) {    
+                    res.forEach((data) => {
+                        category_html +=
+                            `<div class="col-md-12" style="flex:none">
+                                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                    <div class="col p-4 d-flex flex-column position-static" style="direction:rtl">
+                                        <center>
+                                            <h3 class="mb-0">`+data.name+`</h3>
+                                            <div class="mb-1 text-body-secondary">
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                            </div>
+                                            <p class="card-text mb-auto">`+data.description+`</p>
+                                            <p class="card-text mb-auto">Price: `+data.price+`$</p>
+                                            <a href="#" onclick="OpneCartModal(`+ data.id + `)" class="stretched-link">Order now</a>
+                                        </center>
+                                    </div>
+                                    <div class="col-auto d-none d-lg-block">
+                                        <img class="img-thumbnail rounded" style="margin-top:50px;height:100px;width:100px;" src="/images/menuProduct/`+ data.photoUrl + `">
+                                    </div>
+                                </div>
+                            </div>`
+                    })
+                }
+                $("#product_list").empty().append(category_html);
+            }
+        });
+    }
+
+
+
+</script>
+

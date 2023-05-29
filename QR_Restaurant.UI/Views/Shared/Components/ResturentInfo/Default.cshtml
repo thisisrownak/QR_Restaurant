@@ -1,0 +1,91 @@
+﻿@model RestaurantSettingsViewModel
+@using Microsoft.AspNetCore.Http
+@{
+    string url = Context.Request.Path;
+}
+<div class="page-wrapper-img">
+    <div class="page-wrapper-img-inner">
+        <div class="sidebar-user media">
+            <img style="min-height:60px;max-height:60px;min-width:60px;max-width:60px" src="~/images/logos/@Model.LogoUrl" alt="user" class="rounded-circle img-thumbnail mb-1 mr-2">
+          @*  <span class="online-icon"><i class="mdi mdi-record text-success"></i></span>*@
+            <div class="media-body">
+                <h5 class="text-light">@Model.Name</h5>
+                <ul class="list-unstyled list-inline mb-0 mt-2">
+                    <li class="list-inline-item">
+                        <a href="#" class=""><i class="mdi mdi-account text-light"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class=""><i class="mdi mdi-settings text-light"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="/Account/LogOut" class=""><i class="mdi mdi-power text-danger"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+ 
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="float-right align-item-center mt-2">
+                        <button class="btn btn-info px-4 align-self-center report-btn" style="  font-family: Noto Kufi Arabic;">عمل تقرير</button>
+                    </div>
+                    <h4 class="page-title mb-2"><i class="mdi mdi-monitor mr-2"></i>لوحة تحكم المدير</h4>
+                    <div class="">
+                        <ol class="breadcrumb" onload="getPath()">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">@url.Remove(0, 1)</a></li>
+                            @*<li class="breadcrumb-item"><a href="javascript:void(0);">قسم فرعي</a></li>
+                            <li class="breadcrumb-item active">قسم فرعي</li>*@
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    const getLink = (param) => {
+        switch (param) {
+            case 'order':
+                window.location.href = '/restaurant/RestaurantManager';
+                return;
+            case 'orderAlternative':
+                window.location.href = '/restaurant/orders';
+                return;
+            case 'orderBoard':
+                window.location.href = '/restaurant/orderBoard';
+                return;
+            case 'qr':
+                window.location.href = '/qrcode';
+                return;
+            case 'menu':
+                window.location.href = '/menuproduct';
+                return;
+            case 'menuFeatures':
+                window.location.href = '/menuproductfeature';
+                return;
+            case 'category':
+                window.location.href = '/menuCategory';
+                return;
+            case 'settings':
+                window.location.href = '/Restaurant/settings';
+                return;
+            case 'staff':
+                window.location.href = '/staff';
+                return;
+            case 'reports':
+                window.location.href = '/report';
+                return;
+            default:
+                return;
+        }
+    }
+
+    const getPath = () =>{ 
+        var _url = "@url";
+        console.log(_url);
+    }
+</script>
+

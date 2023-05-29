@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>操作方式</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>活性</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>加</value>
+  </data>
+  <data name="AddOrderSuccessMessage" xml:space="preserve">
+    <value>您的订单已发送。</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>地址</value>
+  </data>
+  <data name="AddToCartMessage" xml:space="preserve">
+    <value>该产品已被添加到购物车中。</value>
+  </data>
+  <data name="AddWaiterWarning" xml:space="preserve">
+    <value>您必须添加服务员才能完成订单。</value>
+  </data>
+  <data name="Allregisteredrestaurants" xml:space="preserve">
+    <value>注册餐厅</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>准备中</value>
+  </data>
+  <data name="Arabic" xml:space="preserve">
+    <value>阿拉伯</value>
+  </data>
+  <data name="Block" xml:space="preserve">
+    <value>转</value>
+  </data>
+  <data name="BlockRestaurant" xml:space="preserve">
+    <value>您确定要让餐厅成为被动餐厅吗？</value>
+  </data>
+  <data name="CallBillMessage" xml:space="preserve">
+    <value>需要帐户</value>
+  </data>
+  <data name="CallSuccess" xml:space="preserve">
+    <value>我们会尽快来</value>
+  </data>
+  <data name="CallWaiter" xml:space="preserve">
+    <value>叫服务员</value>
+  </data>
+  <data name="CallWaiterMessage" xml:space="preserve">
+    <value>服务员被叫来了。</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="CancelQuestion" xml:space="preserve">
+    <value>你确定要取消？</value>
+  </data>
+  <data name="Cart" xml:space="preserve">
+    <value>我的订单购物车</value>
+  </data>
+  <data name="CategoryName" xml:space="preserve">
+    <value>分类名称</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>更改密码</value>
+  </data>
+  <data name="Chinese" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="Clock" xml:space="preserve">
+    <value>时钟</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>关</value>
+  </data>
+  <data name="ClosedTableNotification" xml:space="preserve">
+    <value>桌子是空的</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+  <data name="CompletedOrdersToday" xml:space="preserve">
+    <value>今天完成的订单</value>
+  </data>
+  <data name="CreateMenu" xml:space="preserve">
+    <value>创建菜单</value>
+  </data>
+  <data name="CreateMenuCategory" xml:space="preserve">
+    <value>创建菜单类别</value>
+  </data>
+  <data name="CreateQRCodePDFForAllTables" xml:space="preserve">
+    <value>为所有表格创建QR码PDF</value>
+  </data>
+  <data name="CreateQrTable" xml:space="preserve">
+    <value>用QR码创建新表</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>¥</value>
+  </data>
+  <data name="CurrencyDescription" xml:space="preserve">
+    <value>如果不填写币种，会根据选择的语言显示。</value>
+  </data>
+  <data name="CurrencyUnit" xml:space="preserve">
+    <value>货币单位</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>日期范围</value>
+  </data>
+  <data name="DeleteQuestion" xml:space="preserve">
+    <value>你确定你要删除？</value>
+  </data>
+  <data name="Delivery" xml:space="preserve">
+    <value>交货</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>详情</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="DownloadQrImage" xml:space="preserve">
+    <value>下载二维图像</value>
+  </data>
+  <data name="DragOrder" xml:space="preserve">
+    <value>列表间拖动订单 , 列表间拖动订单</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="EmptyCartMessage" xml:space="preserve">
+    <value>您的购物车还是空的。</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>结束日期</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>英语</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>抱歉，我们现在无法执行您想要的操作。</value>
+  </data>
+  <data name="FillField" xml:space="preserve">
+    <value>请填写该字段。</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>法文</value>
+  </data>
+  <data name="German" xml:space="preserve">
+    <value>德语</value>
+  </data>
+  <data name="GetPaid" xml:space="preserve">
+    <value>得到报酬</value>
+  </data>
+  <data name="GetPaidQuestion" xml:space="preserve">
+    <value>所有订单将保存为已完成并已付款。您批准付款吗？</value>
+  </data>
+  <data name="Hindi" xml:space="preserve">
+    <value>印地语</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>主页</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>图片</value>
+  </data>
+  <data name="InProgress" xml:space="preserve">
+    <value>准备中</value>
+  </data>
+  <data name="InvalidKanbanUpdate" xml:space="preserve">
+    <value>已付款订单的状态无法更改。 刷新页面。</value>
+  </data>
+  <data name="Japanese" xml:space="preserve">
+    <value>日本</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>舌</value>
+  </data>
+  <data name="LockAccountMessage" xml:space="preserve">
+    <value>您的帐户已被冻结。 您需要通过联系来打开您的帐户。</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>已锁定</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="ManagementPanel" xml:space="preserve">
+    <value>管理小组</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>经理</value>
+  </data>
+  <data name="ManagerEmail" xml:space="preserve">
+    <value>授权电子邮件</value>
+  </data>
+  <data name="ManagerName" xml:space="preserve">
+    <value>授权名称</value>
+  </data>
+  <data name="ManagerPhone" xml:space="preserve">
+    <value>授权电话</value>
+  </data>
+  <data name="ManagerSurname" xml:space="preserve">
+    <value>授权姓氏</value>
+  </data>
+  <data name="ManagerUsername" xml:space="preserve">
+    <value>授权用户名</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>菜单</value>
+  </data>
+  <data name="MenuCategories" xml:space="preserve">
+    <value>菜单类别</value>
+  </data>
+  <data name="MenuList" xml:space="preserve">
+    <value>菜单清单</value>
+  </data>
+  <data name="MenuOptions" xml:space="preserve">
+    <value>菜单选项</value>
+  </data>
+  <data name="MostPreferred" xml:space="preserve">
+    <value>最喜欢的</value>
+  </data>
+  <data name="MultiChoice" xml:space="preserve">
+    <value>多项选择</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>新的</value>
+  </data>
+  <data name="NewOrderMessage" xml:space="preserve">
+    <value>您有新订单！</value>
+  </data>
+  <data name="NewOrderTableNotification" xml:space="preserve">
+    <value>有新订单</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>新密码</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>没有</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>您的数据不可用。</value>
+  </data>
+  <data name="NoDataDesc" xml:space="preserve">
+    <value>有了数据后，就可以在这里看到它。</value>
+  </data>
+  <data name="NoOrderMessage" xml:space="preserve">
+    <value>您没有新订单。</value>
+  </data>
+  <data name="NoTableMessage" xml:space="preserve">
+    <value>您必须为餐厅添加一张桌子。</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>不</value>
+  </data>
+  <data name="NotePlaceholder" xml:space="preserve">
+    <value>指明您是否有订单备注</value>
+  </data>
+  <data name="OnRequest" xml:space="preserve">
+    <value>根据要求</value>
+  </data>
+  <data name="OpenTableNotification" xml:space="preserve">
+    <value>有顾客</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>选项</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>订购</value>
+  </data>
+  <data name="OrderBoard" xml:space="preserve">
+    <value>订单板</value>
+  </data>
+  <data name="OrderButton" xml:space="preserve">
+    <value>下订单</value>
+  </data>
+  <data name="OrderHistory" xml:space="preserve">
+    <value>订单历史</value>
+  </data>
+  <data name="OrderList" xml:space="preserve">
+    <value>订单（列表）</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>命令</value>
+  </data>
+  <data name="OrderTables" xml:space="preserve">
+    <value>订单表</value>
+  </data>
+  <data name="Passive" xml:space="preserve">
+    <value>被动</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="PasswordAgain" xml:space="preserve">
+    <value>密码重复</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>付款</value>
+  </data>
+  <data name="PaymentSuccessMessage" xml:space="preserve">
+    <value>所有订单均记录为已完成并已付款。您可以从侧面标签获取付款凭证。</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>电话</value>
+  </data>
+  <data name="Piece" xml:space="preserve">
+    <value>片</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>请选择</value>
+  </data>
+  <data name="Polish" xml:space="preserve">
+    <value>抛光</value>
+  </data>
+  <data name="Portuguse" xml:space="preserve">
+    <value>葡萄牙语</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>价钱</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>隐私</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>产品</value>
+  </data>
+  <data name="ProductFeatureItems" xml:space="preserve">
+    <value>菜单功能选项</value>
+  </data>
+  <data name="ProductFeatures" xml:space="preserve">
+    <value>菜单特色</value>
+  </data>
+  <data name="ProductNotAvailable" xml:space="preserve">
+    <value>此产品目前无法使用。</value>
+  </data>
+  <data name="QrCodeTables" xml:space="preserve">
+    <value>QR码表</value>
+  </data>
+  <data name="RegisterForm" xml:space="preserve">
+    <value>报名表格</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>被拒绝</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>记住账号</value>
+  </data>
+  <data name="RemoveToCartMessage" xml:space="preserve">
+    <value>该产品已从购物车中删除。</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>报导</value>
+  </data>
+  <data name="RequestPayment" xml:space="preserve">
+    <value>请求付款</value>
+  </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>餐厅</value>
+  </data>
+  <data name="RestaurantDescription" xml:space="preserve">
+    <value>餐厅说明</value>
+  </data>
+  <data name="RestaurantDetails" xml:space="preserve">
+    <value>餐厅详情</value>
+  </data>
+  <data name="RestaurantManagerAccountDetails" xml:space="preserve">
+    <value>餐厅行政人员账户明细</value>
+  </data>
+  <data name="RestaurantName" xml:space="preserve">
+    <value>餐厅名称</value>
+  </data>
+  <data name="RestaurantRegistration" xml:space="preserve">
+    <value>餐厅注册</value>
+  </data>
+  <data name="Restaurants" xml:space="preserve">
+    <value>餐馆</value>
+  </data>
+  <data name="RestaurantSettings" xml:space="preserve">
+    <value>餐厅设置</value>
+  </data>
+  <data name="RestaurantStaff" xml:space="preserve">
+    <value>餐厅员工</value>
+  </data>
+  <data name="RestaurantUrl" xml:space="preserve">
+    <value>餐厅网址</value>
+  </data>
+  <data name="RowNumber" xml:space="preserve">
+    <value>行号</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+    <value>俄语</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="SelectImage" xml:space="preserve">
+    <value>选择图片</value>
+  </data>
+  <data name="SelectOptions" xml:space="preserve">
+    <value>请完成您的选择。</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设定值</value>
+  </data>
+  <data name="SiteSettings" xml:space="preserve">
+    <value>网站设定</value>
+  </data>
+  <data name="SoldStocks" xml:space="preserve">
+    <value>卖出股票</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>西班牙文</value>
+  </data>
+  <data name="StaffManagement" xml:space="preserve">
+    <value>员工管理</value>
+  </data>
+  <data name="Staffs" xml:space="preserve">
+    <value>员工</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>开始日期</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="SuccessProcess" xml:space="preserve">
+    <value>您的交易已成功完成。</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>姓</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>表</value>
+  </data>
+  <data name="TableName" xml:space="preserve">
+    <value>表名</value>
+  </data>
+  <data name="TableNameShowInQr" xml:space="preserve">
+    <value>表格名称出现在二维码pdf中。</value>
+  </data>
+  <data name="TableNo" xml:space="preserve">
+    <value>表号</value>
+  </data>
+  <data name="TableNoShowInQr" xml:space="preserve">
+    <value>让表格编号出现在二维码pdf中。</value>
+  </data>
+  <data name="Tables" xml:space="preserve">
+    <value>桌子</value>
+  </data>
+  <data name="TemporaryPassword" xml:space="preserve">
+    <value>临时密码</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>总</value>
+  </data>
+  <data name="Turkish" xml:space="preserve">
+    <value>土耳其</value>
+  </data>
+  <data name="Unblock" xml:space="preserve">
+    <value>启用</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>单价</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>版</value>
+  </data>
+  <data name="Waiter" xml:space="preserve">
+    <value>服务员</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>欢迎</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="İtalian" xml:space="preserve">
+    <value>义大利文</value>
+  </data>
+</root>

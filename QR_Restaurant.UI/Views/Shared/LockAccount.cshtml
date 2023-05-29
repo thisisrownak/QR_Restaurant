@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Error";
+}
+
+<script>
+    localStorage.setItem('restaurantId', '')
+    localStorage.setItem('userId', '')
+    localStorage.setItem('tableId', '')
+</script>
+
+<div class="middle-box text-center animated fadeInDown">
+    <h1><i class="fa fa-exclamation-triangle text-qrRest-dark"></i></h1>
+    <h3 class="font-bold text-center text-qrRest-dark"> @SharedLocalizer.GetLocalizedValue("LockAccountMessage") </h3>
+</div>
