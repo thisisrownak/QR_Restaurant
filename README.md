@@ -1,1 +1,3 @@
-# QR_Restaurant
+The Restaurant Management System is a comprehensive open-source application built using the repository pattern, interface-based programming, Model-View-Controller (MVC) architecture, Entity Framework, and .NET technologies. This GitHub repository contains the complete source code and associated files for the Restaurant Management System.
+
+The Restaurant Management System aims to streamline and automate various operations within a restaurant, enabling efficient management of orders, inventory, employees, and customer interactions. This system provides a user-friendly interface for restaurant owners, managers, and staff to carry out their daily tasks effectively.
